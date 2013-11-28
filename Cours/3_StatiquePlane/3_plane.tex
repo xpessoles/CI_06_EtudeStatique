@@ -1,0 +1,541 @@
+\documentclass[11pt,oneside]{article}
+\input{coursHeadings}
+
+\usepackage[%
+    pdftitle={Statique - Statique plane},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+\usepackage{schemabloc}
+
+ \usepackage{cancel}
+
+% \makeatletter \let\ps@plain\ps@empty \makeatother
+%% DEBUT DU DOCUMENT
+%% =================
+\sloppy
+\hyphenpenalty 10000
+
+\newcommand{\Pointilles}[1][3]{%
+\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[\parskip]
+}}
+
+
+\colorlet{shadecolor}{orange!15}
+
+\newtheorem{theorem}{Theorem}
+
+
+\begin{document}
+
+
+\newboolean{prof}
+\setboolean{prof}{true}
+%------------- En tetes et Pieds de Pages ------------
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\fancyhead[L]{%
+\noindent\noindent\begin{minipage}[c]{2.6cm}
+%Lycée Rouvière PTSI
+\includegraphics[width=2cm]{png/logo_ptsi.png}%
+\end{minipage}
+}
+
+\fancyhead[C]{\rule{12cm}{.5pt}}
+
+\fancyhead[R]{%
+\begin{minipage}[c]{3cm}
+\begin{flushright}
+\footnotesize{\textit{\textsf{Sciences Industrielles\\ pour l'Ingénieur}}}%
+\end{flushright}
+\end{minipage}
+}
+
+\renewcommand{\footrulewidth}{0.2pt}
+
+\fancyfoot[C]{\footnotesize{\bfseries \thepage}}
+\fancyfoot[L]{\footnotesize{2012 -- 2013} \\ X. \textsc{Pessoles}}
+\ifthenelse{\boolean{prof}}{%
+\fancyfoot[R]{\footnotesize{Cours -- CI 3 : Statique -- P}}
+}{%
+\fancyfoot[R]{\footnotesize{Cours -- CI 3 : Statique}}
+}
+
+
+
+\begin{center}
+ \huge\textsc{CI 3 -- Statique : Modélisation, prévision et vérification du 
+comportement statique des systèmes}
+\end{center}
+
+\begin{center}
+ \LARGE\textsc{Chapitre 3 -- Résolution des problèmes de statiques planes} 
+\end{center}
+
+\vspace{.5cm}
+
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[height=5cm]{png/vtt1} &
+\includegraphics[height=5cm]{png/vtt2} \\
+\textit{VTT Kona One à suspension blocable \cite{vtt}} & \textit{Modélisation cinématique}\\
+\end{tabular}
+\end{center}
+
+\vspace{.2cm}
+Le calcul des efforts dans un système peut paraître fastidieux quand il s'agit de le résoudre analytiquement. L'application du principe fondamental de la statique permet de développer des méthodes plus rapides. 
+
+\begin{prob}
+\textsc{Problématique :}
+\begin{itemize}
+\item Appliquer le PFS lors de problèmes plans.
+\end{itemize}
+\end{prob}
+
+\begin{savoir}
+\textsc{Savoirs :}
+\begin{itemize}
+\item Résoudre méthodiquement des problèmes de statiques planes (méthode analytique et graphique)
+\item Résoudre méthodiquement des problèmes graphiques pour des solides soumis à 2 ou 3 glisseurs
+\item Résoudre les problèmes d'arcboutements
+\end{itemize}
+\end{savoir}
+
+\setlength{\parskip}{0ex plus 0.2ex minus 0ex}
+ \renewcommand{\contentsname}{}
+ \renewcommand{\baselinestretch}{1}
+
+\tableofcontents
+
+ \renewcommand{\baselinestretch}{1.2}
+\setlength{\parskip}{2ex plus 0.5ex minus 0.2ex}
+
+% \vspace{1cm}
+\textit{Ce document est en évolution permanente. Merci de signaler toutes
+erreurs ou coquilles.}
+
+\section{Hypothèse de travail en statique plane}
+\begin{defi}
+Soit le repère $(\vect{u},\vect{v},\vect{w})$. En statique le problème est dans le plan $(\vect{u},\vect{v})$ lorsque la résultante des efforts appartient à ce plan et lorsque le moment est suivant le vecteur $\vect{w}$.
+\end{defi}
+
+\begin{exemple}
+Soit une liaison glissière d'axe $\vect{z}$. Le torseur de la liaison est le suivant :
+$$
+\torseurstat{T}{S_1}{S_2}=
+\torseurcol{X_{12}}{Y_{12}}{0}{L_{12}}{M_{12}}{N_{12}}{A,\mathcal{R}}
+$$
+
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+Dans le plan $(\vect{x},\vect{y})$
+$$
+\torseurstat{T}{S_1}{S_2}=
+\torseurcol{X_{12}}{Y_{12}}{\cancel{0}}{\cancel{L_{12}}}{\cancel{M_{12}}}{N_{12}}{A,\mathcal{R}}
+$$
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+Dans le plan $(\vect{y},\vect{z})$
+$$
+\torseurstat{T}{S_1}{S_2}=
+\torseurcol{\cancel{X_{12}}}{Y_{12}}{0}{L_{12}}{\cancel{M_{12}}}{\cancel{N_{12}}}{A,\mathcal{R}}
+$$
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+Dans le plan $(\vect{z},\vect{x})$
+$$
+\torseurstat{T}{S_1}{S_2}=
+\torseurcol{X_{12}}{\cancel{Y_{12}}}{0}{\cancel{L_{12}}}{M_{12}}{\cancel{N_{12}}}{A,\mathcal{R}}
+$$
+\end{center}
+\end{minipage}
+
+\end{exemple}
+
+\section{Résolution analytique des problèmes de statique plane}
+
+\begin{methode}
+Lorsque le problème est plan et qu'on souhaite résoudre un problème de statique de manière analytique, il n'est pas indispensable de passer par les torseurs. 
+
+\begin{enumerate}
+\item Réaliser un bilan des actions mécaniques de façons graphique. Pour cela on réalise un croquis de l'ensemble isolé. 
+\item Sur le croquis on fait représenter tous les efforts connus (en respectant la direction et le sens de l'effort). Les résultantes sont représentées par des flèches, les moments par des arcs de cercles (Attention au point d'application et à l'orientation).
+\item Sur le croquis, représenter les efforts inconnus. Par convention on trace les efforts dans le sens positif. (Si leur valeur est négative cela apparaîtra naturellement dans le calcul).
+\item Appliquer le théorème de la résultante statique en projection sur $\vect{x}$ puis sur $\vect{y}$ (si le mouvement est dans le plan $\left(\vect{x},\vect{y}\right)$). Pour cela sommer toutes les composantes sur $\vect{x}$ puis toutes les composantes sur $\vect{y}$ (Attention à bien respecter le sens des actions mécaniques).
+\item Appliquer le théorème du moment statique en un point bien précisé ($P$). Pour cela, on tient compte du fait que le moment est le produit d'un effort par un bras de levier. Le bras de levier étant la distance entre $P$ et la droite directrice de l'effort. Enfin, le signe est donné par le sens de la rotation de centre $P$ qui serait induit par l'effort. 
+\end{enumerate}
+\end{methode}
+
+
+\begin{exemple}
+\begin{minipage}[c]{.25\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/5}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.7\linewidth}
+Théorème de la résultante statique : 
+$$
+\left\{
+\begin{array}{l}
+X_{45}+\vect{F_{65}}\cdot\vect{x}=0 \\
+Y_{45}+\vect{F_{65}}\cdot\vect{y}=0 
+\end{array}
+\right.
+$$
+Théorème du moment statique en $E$ sur $\vect{z}$ : 
+$$
+N_{65}=0 
+$$
+\end{minipage}
+\end{exemple}
+
+\begin{exemple}
+\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/3}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.6\linewidth}
+Théorème de la résultante statique : 
+$$
+\left\{
+\begin{array}{l}
+X_{13}+X_{43}=0 \\
+Y_{13}+Y_{43}=0 
+\end{array}
+\right.
+$$
+Théorème du moment statique en $C$ sur $\vect{z}$ : 
+$$
+X_{13}y_{BC}-Y_{13}x_{BC}=0 
+$$
+\end{minipage}
+\end{exemple}
+
+
+\begin{exemple}
+\begin{minipage}[c]{.5\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/1}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.45\linewidth}
+Théorème de la résultante statique : 
+$$
+\left\{
+\begin{array}{l}
+X_{21}+X_{31}+X_{01}=0 \\
+Y_{21}+Y_{31}+Y_{01}=0 
+\end{array}
+\right.
+$$
+Théorème du moment statique en $O$ sur $\vect{z}$ : 
+$$
+-X_{31}y_{OB}+X_{01}y_{OG}+Y_{31}x_{OB}+Y_{01}x_{OG}=0 
+$$
+\end{minipage}
+\end{exemple}
+
+\subsection*{Fin de la résolution}
+
+
+\begin{exemple}
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/2}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.65\linewidth}
+Théorème de la résultante statique : 
+$$
+\left\{
+\begin{array}{l}
+X_{12}=0 \\
+Y_{12}+Y_{72}=0 
+\end{array}
+\right.
+$$
+Théorème du moment statique en $O$ sur $\vect{z}$ : 
+$$
+0=0
+$$
+\end{minipage}
+
+\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/4}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.6\linewidth}
+Théorème de la résultante statique : 
+$$
+\left\{
+\begin{array}{l}
+X_{34}+X_{04}+X_{54}=0 \\
+Y_{34}+Y_{04}+Y_{54}=0 \\
+\end{array}
+\right.
+$$
+Théorème du moment statique en $C$ sur $\vect{z}$ : 
+$$
+X_{04}y_{CD}+Y_{04}x_{CD}+X_{54}y_{CE}+Y_{54}x_{CE}=0
+$$
+\end{minipage}
+
+\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/6}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.6\linewidth}
+Théorème de la résultante statique : 
+$$
+\left\{
+\begin{array}{l}
+X_{06}+\vect{F_{56}}\cdot\vect{x}=0\\
+Y_{06}+\vect{F_{56}}\cdot\vect{y}=0\\
+\end{array}
+\right.
+$$
+Théorème du moment statique en $F$ sur $\vect{z}$ : 
+$$
+N_{56}=0
+$$
+\end{minipage}
+
+\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/7}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.6\linewidth}
+$F_{\text{Sol}}$ représente l'action du sol sur la roue de vélo. Son module est de $700\; N$. 
+
+Théorème de la résultante statique : 
+$$
+\left\{
+\begin{array}{l}
+X_{07}=0 \\
+F_{\text{Sol}}+Y_{27}=0 
+\end{array}
+\right.
+$$
+Théorème du moment statique en $O$ sur $\vect{z}$ : 
+$$
+N_{07}-Y_{27}x_{AH}=0
+$$
+\end{minipage}
+\end{exemple}
+\section{Résolution graphique des problèmes de statique plane}
+
+\subsection{Décompte du nombre d'inconnus}
+Résoudre graphiquement un problème de statique plane revient à déterminer le point d'application, la direction, ainsi que la norme de la résultante du torseur statique. 
+
+Les inconnues peuvent être décomptées ainsi :
+\begin{itemize}
+\item vecteur glissant entièrement connu : 0 inconnue;
+\item support connu : 1 inconnue;
+\item norme et direction connues : 1 inconnue;
+\item norme et point d'application connus : 1 inconnue;
+\item point d'application connu : 2 inconnues;
+\item direction connue : 2 inconnues;
+\item norme connue : 2 inconnues;
+\item support tangent à 1 cercle (de frottement) : 2 inconnues;
+\item support à l'intérieur d’un cône de frottement : 2 inconnues.
+\end{itemize}
+
+\begin{rem}
+Notation, lorsqu'on isole un solide $i$, on peut noter l'action du solide $j$ sur le solide $i$ au point $P$ par : 
+$$
+\vectf{i}{j}=\vect{P_{i\rightarrow j}}
+$$
+\end{rem}
+\subsection{Cas d'un solide soumis à 2 forces}
+\begin{minipage}[c]{.55\linewidth}
+\begin{resultat}
+On montre que lorsqu'un solide est soumis à 2 forces, l'application du PFS implique que les deux forces sont : 
+\begin{itemize}
+\item de même direction;
+\item de même norme;
+\item de sens opposé.
+\end{itemize}
+
+La direction des efforts est la droite liant les points sur lesquels agissent les efforts.
+\end{resultat}
+\end{minipage}\hfill
+\begin{minipage}[c]{.4\linewidth}
+\begin{center}
+\includegraphics[width=.95\textwidth]{png/3F}
+\end{center}
+\end{minipage}
+
+\begin{exemple}
+\begin{minipage}[c]{.2\linewidth}
+\begin{center}
+\includegraphics[width=.95\textwidth]{png/2F}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.75\linewidth}
+On isole la roue 2. Elle est soumise à 2 efforts : celle du sol (qui est entièrement connue) et l'action de la pièce 1 : la direction, le sens et la norme de l'effort sont inconnus. 
+
+Il y a donc 3 inconnues. Le problème est donc soluble. 
+
+2 étant soumis à deux forces, ces deux forces sont donc de même direction, de même norme et de sens opposé. 
+\end{minipage}
+\end{exemple}
+\subsection{Cas d'un solide soumis à 3 forces}
+\begin{resultat}
+On montre que lorsqu'un solide est soumis à 3 forces, l'application du PFS implique que les trois forces sont : 
+\begin{itemize}
+\item coplanaires;
+\item concourantes ou parallèles;
+\item de somme nulle.
+\end{itemize}
+\end{resultat}
+
+
+\begin{exemple}
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+\includegraphics[width=.95\textwidth]{png/1_F}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.65\linewidth}
+On isole la pièce 1. Elle est soumise à 3 efforts : 
+\begin{itemize}
+\item $\vect{O_{21}}$ est entièrement connue (voir partie précédente);
+\item $\vect{B_{31}}$ : la norme et la direction de l'effort sont inconnus;
+\item $\vect{G_{01}}$ : la norme et la direction de l'effort sont inconnus.
+\end{itemize}
+
+Il y a donc 4 inconnues. Le problème ne peut pas être résolu a priori. 
+
+
+Il nous faudrait, par exemple, connaître la direction d'un effort pour pouvoir conclure. 
+
+Isolons le solide 3. Ce solide est soumis à deux forces : $\vect{B_{13}}$ et $\vect{C_{43}}$. Ces deux efforts sont donc de même norme, de même direction, et de sens opposés. La direction de l'effort est la droite $(BC)$. La direction de l'effort $\vect{B_{13}}$ est donc désormais connu.
+
+En revenant à l'isolement de la pièce 1, une inconnue est donc levée. Il y a donc 3 inconnues. D'après le PFS, $\vect{O_{21}}$, $\vect{B_{31}}$ et $\vect{G_{01}}$ sont \textbf{coplanaires, concourants et de somme nulle}.
+
+\end{minipage}
+\end{exemple}
+
+\begin{methode}
+Lorsqu'on isole un solide soumis à 3 forces $(A,\vect{R_A})$, $(B,\vect{R_B})$ et $(C,\vect{R_C})$. $(A,\vect{R_A})$ est entièrement connue. La direction de $(B,\vect{R_B})$ est connue. La méthode de résolution est la suivante.
+\begin{enumerate}
+\item Tracer les 2 directions connues. Ces deux droites sont concourantes en un point $P$. 
+\item Tracer la droite joignant le point $P$ et le point où est appliqué le dernier effort. On détermine ainsi la direction de ce troisième effort. 
+\item Tracer l'effort connu sur le côté du schéma. 
+\item Tracer une parallèle à la droite $(BP)$ passant par une extrémité du vecteur et une parallèle à la droite $(CP)$  passant par l'autre extrémité. On forme ainsi le triangle des forces. 
+\item Identifier $\vect{R_B}$ et $\vect{R_C}$ en prenant garde au sens. 
+\end{enumerate}
+\end{methode}
+
+\begin{exemple}
+\begin{center}
+\includegraphics[width=.75\textwidth]{png/1_F2}
+\end{center}
+
+De pièce en pièce, il est alors possible de déterminer les efforts dans chacune des pièces. 
+\end{exemple}
+
+
+\subsection{Cas du frottement dans une liaison ponctuelle}
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+\includegraphics[width=.95\textwidth]{png/2_frott}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.65\linewidth}
+Lorsqu'il y a un contact avec frottement, commencer par tracer l'effort normal. Ici, si on isole la roue, l'effort normal va du sol vers la roue. 
+
+Tracer ensuite le cône de frottement. A la limite du glissement, la résultante de l'effort se trouve sur le cône de frottement ($f=\tan\varphi$ avec $\varphi$ demi angle au sommet du cône). 
+
+Choisir le côté du cône de manière à ce que l'effort tangentiel s'oppose à la vitesse de glissement. 
+
+Remarque pour tracer un cône de frottement : si le coefficient de frottement est de $0,1$, dans la situation ci-contre, à la limite du glissement, la résultante de l'effort sera orientée par le vecteur $(1,10)$
+\end{minipage}
+
+%\subsection{Cas du frottement dans une liaison pivot}
+
+\section{Résolution des problèmes d'arc boutements}
+L'arc boutement résulte d'une modification du contact entre deux pièces, lors du basculement d'une d'entre elles. 
+\begin{exemple}
+\textit{Perche d'un téléski}
+
+\begin{center}
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/perche}
+
+Mécanisme d'une perche
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/arc1}
+
+Modélisation de la liaison perche -- câble dans la zone de stockage
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/arc2}
+
+Modélisation de la liaison perche -- câble en cours d'ascension du skieur
+\end{center}
+\end{minipage}
+\end{center}
+\vspace{.5cm}
+
+Lorsque les perches sont dans la zone de stockage, le câble glisse dans la perche. A contrario, lorsqu'il est nécessaire au skieur de prendre une perche dans le but de gravir la pente, l'orientation de la perche par rapport au câble se modifie provoquant une modification de la zone de contact. Ce changement se modéliser par le passage d'une liaison pivot glissant à deux liaisons sphère--plan.
+
+Dans la réalité, au poste de stockage, une pièce supplémentaire permet d'éviter le basculement de la perche. Le déblockage (automatique ou par le perchman) de cette pièce permet à la perche de s'arcbouter. 
+
+\end{exemple}
+
+Un problème d'arc boutement peut être résolu par une méthode graphique ou une méthode analytique. En règle général le solide est soumis à 3 forces dont 2 qui sont des liaisons ponctuelles. 
+L'inconnue peut être :
+\begin{itemize}
+\item le coefficient de frottement;
+\item le jeu dans un mécanisme ou la dimension des éléments;
+\item la direction ou le point d'application du troisième effort.
+\end{itemize}
+
+\begin{methode}
+\begin{enumerate}
+\item Tracer le dessin en situation d'arc boutement.
+\item Tracer la vitesse de glissement.
+\item Tracer les efforts normaux et tangentiels dans les deux liaisons ponctuelles à l'aide des lois de Coulomb.
+\item A la limite du glissement, tracer les directrices des résultantes. 
+\item L'intersection des résultantes permet de définir la zone de coincement et la zone de glissement. 
+\end{enumerate}
+\end{methode}
+
+\begin{center}
+\includegraphics[width=.7\textwidth]{png/arc3}
+\end{center}
+
+Dans le cas où est l'effort est horizontal :
+\begin{itemize}
+\item si le point de l'application de l'effort est dans la zone supérieure, il y a glissement et le câble ne peut pas tirer la perche;
+\item si le point de l'application de l'effort est dans la zone inférieure il y a équilibre et le câble tracte le skieur. 
+\end{itemize}
+
+Pour augmenter la taille de la zone d'équilibre on peut augmenter le coefficient de frottement, diminuer l'écart suivant $\vect{x}$ ou augmenter la distance suivant $\vect{y}$.
+
+\begin{thebibliography}{2}
+\bibitem{vtt}{\url{http://www.clumpstore.com/media/g_vignette/2791.jpg}}
+\bibitem{perche}{\url{http://upload.wikimedia.org/wikipedia/commons/3/30/Platter_lift_cable_grip.jpg}}
+\end{thebibliography}
+\end{document}

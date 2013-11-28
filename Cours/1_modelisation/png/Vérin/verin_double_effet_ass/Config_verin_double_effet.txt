@@ -1,0 +1,7 @@
+Coupe : Ensemble du verin coupé
+Coupe_nez : Nez du verin coupé
+Cylindre_coupe : Cylindre du verin coupé
+Défaut : Config contenant l'éclatée
+Mise en plan : Config à partir de laquelle a été réalisée la mise en plan
+Tige_entree : Verin en position "Tige rentrée"
+Tige_sortie : Verin en position "Tige sortie"
