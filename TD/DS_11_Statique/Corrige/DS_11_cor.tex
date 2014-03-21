@@ -1,0 +1,310 @@
+\documentclass[10pt,oneside]{article}
+\input{coursHeadings}
+
+\usepackage[%
+    pdftitle={Statique - DS11},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+
+% \makeatletter \let\ps@plain\ps@empty \makeatother
+%% DEBUT DU DOCUMENT
+%% =================
+\sloppy
+\hyphenpenalty 10000
+
+\newcommand{\Pointilles}[1][3]{%
+\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[\parskip]
+}}
+
+\begin{document}
+
+
+\newboolean{prof}
+\setboolean{prof}{false}
+%------------- En tetes et Pieds de Pages ------------
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.2pt}
+
+\fancyhead{}
+\fancyhead[L]{PTSI -- Sciences Industrielles pour l'Ingénieur}
+\fancyhead[R]{Lycée Jules Haag -- Besançon}
+
+
+\renewcommand{\footrulewidth}{0.2pt}
+\fancyfoot[C]{\bfseries \thepage}
+\fancyfoot[L]{2010 -- 2011}
+\ifthenelse{\boolean{prof}}{%
+\fancyfoot[R]{DS 11 -- Statique}
+}{%
+\fancyfoot[R]{DS 11 -- Statique}
+}
+
+%\fancyfoot[RO]{Version du \today}
+% \fancyfoot[LE]{Version du \today}
+% \fancyfoot[RO]{\textcolor{gris25}{Version rapporteurs}}
+% \fancyfoot[LE]{\textcolor{gris25}{Version rapporteurs}}
+% \fancyfoot[R]{\textcolor{gris25}{Version rapporteurs}}
+% ----------------------------------------------------
+
+
+
+\vspace{1cm}
+
+\begin{center}
+ \huge\textsc{Devoir Surveillé 11}
+
+\vspace{1cm}
+
+ \large\textsc{Éléments de corrigés}
+\end{center}
+
+\vspace{1cm}
+
+
+\noindent\rule{\linewidth}{.2pt}
+\begin{center}
+ \large\textbf{CI : 3} \textit{Statique : Modélisation, prévision et vérification du comportement statique des systèmes}
+
+\end{center}
+\noindent\rule{\linewidth}{.2pt}
+
+
+
+\section{Système de positionnement de radar}
+\subsection*{Etude du critère de masse à déplacer}
+
+\paragraph{}
+\begin{center}
+\includegraphics[width=.6\textwidth]{png/img1}
+\end{center}
+
+\paragraph{}
+\textit{Donner la forme des torseurs d'actions transmissibles des liaisons 1--3, 3--4 et 2--4 dans la base 3 conformément à la notation imposée ci-dessous.}
+La liaison entre 1 et 3 est une liaison rotule de centre $C$: 
+
+$$
+\left\{
+F_{1 \rightarrow 3} 
+\right\}=
+\left\{
+\begin{array}{cc}
+X_{13} & 0 \\
+Y_{13} & 0 \\
+Z_{13} & 0 \\
+\end{array}
+\right\}_{C,B_3}
+$$
+
+La liaison entre 3 et 4 est une liaison pivot glissant de de centre $F$ et d'axe $\vect{x_3}$: 
+
+$$
+\left\{
+F_{4 \rightarrow 3} 
+\right\}=
+\left\{
+\begin{array}{cc}
+0 & 0 \\
+Y_{43} & M_{43} \\
+Z_{43} & N_{43} \\
+\end{array}
+\right\}_{F,B_3}
+$$
+
+La liaison entre 2 et 4 est une liaison rotule de de centre $D$ : 
+
+$$
+\left\{
+F_{2 \rightarrow 4} 
+\right\}=
+\left\{
+\begin{array}{cc}
+X_{24} & 0 \\
+Y_{24} & 0 \\
+Z_{24} & 0 \\
+\end{array}
+\right\}_{D,B_3}
+$$
+\paragraph{}
+\textit{Déterminer les directions de $\vect{R_{1\rightarrow 3}}$ et de $\vect{R_{2\rightarrow 4}}$ puis en déduire des simplifications dans les torseurs précédents.}
+
+On isole les solides $3$ et $4$. Cet ensemble est soumis à 2 forces. D'après le PFS, ces deux forces ont même norme, même direction et sens opposé. En conséquence, $X_{13}+X_{24}=0$ et $Y_{13}=Z_{13}=Y_{24}=Z_{24}=0$.
+
+$$
+\left\{
+F_{1 \rightarrow 3} 
+\right\}=
+\left\{
+\begin{array}{cc}
+X_{13} & 0 \\
+0 & 0 \\
+0 & 0 \\
+\end{array}
+\right\}_{C,B_3}
+\quad 
+\left\{
+F_{2 \rightarrow 4} 
+\right\}=
+\left\{
+\begin{array}{cc}
+X_{24} & 0 \\
+0 & 0 \\
+0 & 0 \\
+\end{array}
+\right\}_{D,B_3}
+$$
+
+
+\paragraph{}
+\textit{Déterminer l'expression de $||\vect{R_{2\rightarrow 4}}||$ en fonction de $p$ et $S$.}
+On a $||\vect{R_{2\rightarrow 4}}||=pS$ 
+
+\paragraph{}
+\textit{En isolant le solide $2$ et en utilisant le théorème du moment statique au point $A$ projetée sur $\vect{z_2}$, déterminer l'expression de $X_{42}$ en fonction de $P$ et des paramètres géométriques utiles.}
+On isole le solide 2. 
+
+On fait le bilan des actions mécaniques extérieures au point $A$ :
+Liaison rotule en $A$ : 
+$$
+\left\{
+F_{1 \rightarrow 2} 
+\right\}=
+\left\{
+\begin{array}{cc}
+X_{12} & 0 \\
+Y_{12} & 0 \\
+Z_{12} & 0 \\
+\end{array}
+\right\}_{A,B_2}
+$$
+
+
+
+Liaison linéaire annulaire au point $B$ :
+$$
+\left\{
+F_{1 \rightarrow 2} 
+\right\}=
+\left\{
+\begin{array}{cc}
+0 & 0 \\
+Y'_{12} & 0 \\
+Z'_{12} & 0 \\
+\end{array}
+\right\}_{B,B_2}
+=
+\left\{
+\begin{array}{cc}
+0 &  -\\
+Y'_{12} &  -\\
+Z'_{12} &  0\\
+\end{array}
+\right\}_{A,B_2}
+$$
+
+
+Liaison rotule au point $D$ :
+$$
+\left\{
+F_{4 \rightarrow 2} 
+\right\}
+=
+\left\{
+\begin{array}{cc}
+X_{42}  & 0 \\
+0 & 0 \\
+0 & 0 \\
+\end{array}
+\right\}_{D,B_2}
+=
+\left\{
+\begin{array}{cc}
+X_{42}  & -\\
+0 & -\\
+0 & 0 \\
+\end{array}
+\right\}_{A,B_2}
+$$
+
+
+Pesanteur en $G$ :
+$$
+\left\{
+F_{pes \rightarrow 2} 
+\right\}
+=
+\left\{
+\begin{array}{cc}
+-P  & 0 \\
+0 & 0 \\
+0 & 0 \\
+\end{array}
+\right\}_{G,B_2}
+=
+\left\{
+\begin{array}{cc}
+-P  & -\\
+0 & -  \\
+0 &  \\
+\end{array}
+\right\}_{A,B_2}
+$$
+
+\paragraph{}
+\textit{Calculer la valeur de la pression $p$ maximale pour la position $\theta=0^o$ (et donc $\gamma = 18^o$) et $\beta = 0^o$ avec les valeurs numériques données.}
+
+
+\paragraph{}
+\textit{Le vérin utilisé peut supporter une pression de 10 bars maximum. Conclure quant à la capacité du système à satisfaire le critère de masse de radar à déplacer.}
+
+
+
+\section*{Griffe et lame de bulldozer}
+\setcounter{paragraph}{0}
+
+
+La lame 2 est rattachée au bulldozer 1 par l'intermédiaire de la pièce 3 ainsi que les deux vérins 7+6 et 5+4. La griffe 13 est rattachée au bulldozer par l'intermédiaire de la pièce 12 et du vérin 8+9. Les liaisons aux points $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$, $I$ et $J$ sont des liaisons pivots parfaites suivant l'axe $\vect{z_0}$. La pièce 12 est reliée à la griffe 13 au point $K$ grâce à une rainure. 
+
+Tous les vérins ont une surface de piston identique de $2\, 500\pi\; mm^2$.
+
+\paragraph{}
+\textit{La terre exerce sur la griffe une action mécanique $\vect{F_{\text{sol}\rightarrow \text{griffe}}}$ au point $M$ donnée sur le document réponse. Résoudre graphiquement le problème pour déterminer la pression dans les deux vérins actionnant sur la griffe.}
+
+\textbf{Pour les deux premières questions, vous énoncerez brièvement la démarche utilisée. De plus, vous indiquerez clairement sur le dessin les directions des efforts que vous tracez.}
+
+\paragraph{}
+\textit{La terre exerce sur la lame une action mécanique $\vect{F_{\text{sol}\rightarrow \text{lame}}}$ au point $N$ donnée sur le document réponse. Résoudre graphiquement le problème pour déterminer la pression dans les deux vérins actionnant la lame.}
+
+
+\paragraph{}
+\textit{Conclure vis-à-vis du cahier des charges quant aux performances obtenues.}
+
+
+
+\section*{Echelle en appui sur un mur}
+
+\setcounter{paragraph}{0}
+\paragraph{Tous les frottements sont négligés}
+\textit{Le grimpeur est situé au milieu de l'échelle. En appliquant le PFS en A à l'ensemble échelle et grimpeur, sans écrire le moindre torseur, montrer que l'échelle ne peut tenir en équilibre.}
+
+\paragraph{On considère qu'il y a du frottement au point $A$.}
+\textit{Le coefficient de frottement est égal à 0,3. Reproduire le schéma et faire apparaître le cône de frottement. Préciser la position de l'effort normal et de l'effort tangentiel à la limite du glissement.}
+ 
+
+\paragraph{On considère qu'il y a du frottement au point $A$.}
+\textit{Appliquer le PFS au point A à l'ensemble échelle et grimpeur, déterminer l'angle $\alpha$ pour lequel l'échelle est en équilibre.}
+
+\paragraph{On considère qu'il y a du frottement au point $A$ et en $B$.}
+\textit{Dans quelle situation se trouve le système. Pour $\alpha=20^o$, préciser pour quel poids P le système est en équilibre. Vous pourrez utiliser une méthode graphique.}
+
+\end{document}
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+\documentclass[11pt,oneside]{article}
+\input{coursHeadings}
+
+\usepackage[%
+    pdftitle={TD Statique},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+
+% \makeatletter \let\ps@plain\ps@empty \makeatother
+%% DEBUT DU DOCUMENT
+%% =================
+\sloppy
+\hyphenpenalty 10000
+
+\newcommand{\Pointilles}[1][3]{%
+\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[\parskip]
+}}
+
+
+\begin{document}
+
+
+\newboolean{prof}
+\setboolean{prof}{false}
+%------------- En tetes et Pieds de Pages ------------
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\fancyhead{}
+\fancyhead[L]{%
+\begin{minipage}[c]{1.6cm}
+\includegraphics[width=1.4cm]{png/logo_jh_ptsi.png}%
+\end{minipage}
+\rule{2cm}{.5pt}
+}
+
+\fancyhead[C]{\rule{12cm}{.5pt}}
+
+\fancyhead[R]{%
+\begin{minipage}[c]{3cm}
+\begin{flushright}
+\footnotesize{\textit{\textsf{Sciences Industrielles\\ pour l'Ingénieur}}}%
+\end{flushright}
+\end{minipage}
+}
+
+\renewcommand{\footrulewidth}{0.2pt}
+
+\fancyfoot[C]{\footnotesize{\bfseries \thepage}}
+\fancyfoot[L]{\footnotesize{2011 -- 2012} \\ X. \textsc{Pessoles}}
+\ifthenelse{\boolean{prof}}{%
+\fancyfoot[R]{\footnotesize{TD -- CI 3 : Statique -- P}}
+}{%
+\fancyfoot[R]{\footnotesize{TD -- CI 3 : Statique}}
+}
+
+
+%\begin{center}
+%\textit{Centre d'intérêt}
+%\end{center}
+
+\begin{center}
+ \huge\textsc{CI 3 -- Statique : Modélisation, prévision et vérification du comportement statique des systèmes}
+\end{center}
+
+\begin{center}
+ \LARGE\textsc{Chapitre 3 -- Étude graphique} 
+\end{center}
+
+%\setcounter{paragraph}{0}
+\vspace{.5cm}
+
+
+\section*{Griffe et lame de bulldozer}
+\setcounter{paragraph}{0}
+
+\begin{minipage}[c]{.45\linewidth}
+Un bulldozer est une pelle niveleuse montée sur un tracteur à chenilles. Il est équipé d'une lance à lame à l'avant et d'une griffe à l'arrière utiles pour le terrassement des sols. 
+
+L'objectif de cette étude est de déterminer toutes les actions mécaniques agissant sur les vérins hydrauliques qui actionnent la lame et griffe afin de vérifier une performance du bulldozer dont on donne un extrait partiel du cahier des charges fonctionnel.
+\end{minipage}\hfill
+\begin{minipage}[c]{.5\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/img5}
+\end{center}
+\end{minipage}
+
+\begin{center}
+\includegraphics[width=.9\textwidth]{png/img6}
+\end{center}
+
+La lame 2 est rattachée au bulldozer 1 par l'intermédiaire de la pièce 3 ainsi que les deux vérins 7+6 et 5+4. La griffe 13 est rattachée au bulldozer par l'intermédiaire de la pièce 12 et du vérin 8+9. Les liaisons aux points $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$, $I$ et $J$ sont des liaisons pivots parfaites suivant l'axe $\vect{z_0}$. La pièce 12 est reliée à la griffe 13 au point $K$ grâce à une rainure. 
+
+Tous les vérins ont une surface de piston identique de $2\, 500\pi\; mm^2$.
+
+\paragraph{}
+\textit{La terre exerce sur la griffe une action mécanique $\vect{F_{\text{sol}\rightarrow \text{griffe}}}$ au point $M$ donnée sur le document réponse. Résoudre graphiquement le problème pour déterminer la pression dans les deux vérins actionnant sur la griffe.}
+
+\textbf{Pour les deux premières questions, vous énoncerez brièvement la démarche utilisée. De plus, vous indiquerez clairement sur le dessin les directions des efforts que vous tracez.}
+
+\paragraph{}
+\textit{La terre exerce sur la lame une action mécanique $\vect{F_{\text{sol}\rightarrow \text{lame}}}$ au point $N$ donnée sur le document réponse. Résoudre graphiquement le problème pour déterminer la pression dans les deux vérins actionnant la lame.}
+
+
+\paragraph{}
+\textit{Conclure vis-à-vis du cahier des charges quant aux performances obtenues.}
+
+
+\newpage 
+
+\begin{center}
+\rotatebox{90}{\includegraphics[width=\textheight]{png/img7}}
+\end{center}
+
+\newpage 
+
+\begin{center}
+\rotatebox{90}{\includegraphics[width=\textheight]{png/img8}}
+\end{center}
+
+\end{document}
