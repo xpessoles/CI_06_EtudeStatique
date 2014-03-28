@@ -1,0 +1,137 @@
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{false}
+
+\usepackage[%
+    pdftitle={CI 06 : Stat - Modélisation des AM},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 06 : Étude du comportement statique des systèmes}{}}
+
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 1 -- Modélisation des Actions Mécaniques}{
+Partie  -- }}
+
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+Xavier \textsc{Pessoles}}{}}
+
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 06 : Statique\\
+Ch. 1 : Modélisation des AM -- TD -- Géométrie des Masses}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+
+
+
+
+%---------------------------------------------------------------------------
+
+
+\begin{document}
+
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
+
+\begin{center}
+\Large{\textsc{Exercices d'application : Modèle global -- Calcul de moment dans le plan}}
+\end{center}
+
+\begin{flushright}
+\textit{D'après ressources de G. Himmelspach.}
+\end{flushright}
+\vspace{.5cm}
+
+\subsection*{Exercice 1 -- Panneau soumis à l'action du vent}
+\setcounter{subparagraph}{0}
+\ifthenelse{\boolean{prof}}{
+\begin{corrige}\end{corrige}}{}
+
+\begin{center}
+\includegraphics[width=7cm]{images/moment8.pdf}
+\end{center}
+
+\subparagraph*{}
+\textit{Déterminer le moment exercé par la résultante de l'action mécanique du vent sur le panneau au point $A$.}
+
+\subsection*{Exercice 2 -- Balance romaine}
+\begin{center}
+\includegraphics[width=12cm]{images/balance.pdf}
+\end{center}
+La balance romaine représentée ci-dessus est constituée d'un contrepoids 3 coulissant le long de la tige 2 (graduée).
+\subparagraph*{}
+\textit{Déterminer la masse de l'objet pesé sur le crochet 4. Déterminer la force extérieure sur 1 permettant de maintenir le système à l'équilibre.}
+
+
+
+\subsection*{Exercice 3 -- Clé à molette}
+\begin{center}
+\includegraphics[width=10cm]{images/moment7.pdf}
+\end{center}
+L'utilisateur exerce une force sur la clé au point $A$ comme indiqué sur la figure \ref{cle}. En déduire le moment de serrage de l'écrou en $B$ produit par cette force.
+
+\subsection*{Exercice 4 -- Clé en T}
+L'utilisateur exerce 2 forces égales et opposées au bout de la tige coulissante, valant $F=100$ N. Monter que dans les 4 positions l'action mécanique de serrage sur l'écroue est identique.
+\begin{center}
+\includegraphics[width=15cm]{images/moment2.pdf}
+\end{center}
+
+
+\subsection*{Exercice 5 -- Poutres}
+Sur les figures suivantes, déterminer le moment exercé par le bâti sur la poutre, au point indiqué sur la figure au niveau de la liaison encastrement.
+
+
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=6cm]{images/moment1.pdf}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=6cm]{images/moment3.pdf}
+\end{center}
+\end{minipage} 
+
+
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=6cm]{images/moment4.pdf}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=6cm]{images/moment5.pdf}
+\end{center}
+\end{minipage} 
+
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=6cm]{images/moment6.pdf}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=6cm]{images/poutre.pdf}
+\end{center}
+\end{minipage} 
+
+\end{document}

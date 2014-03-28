@@ -1,6 +1,6 @@
 \select@language {french}
 \contentsline {section}{\numberline {1}D\IeC {\'e}finitions}{2}{section.1}
-\contentsline {subsection}{\numberline {1.1}Action m\IeC {\'e}canique}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.1}Action m\IeC {\'e}canique}{2}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Torseur statique}{6}{subsection.1.2}
 \contentsline {section}{\numberline {2}Actions m\IeC {\'e}caniques \IeC {\`a} distance}{6}{section.2}
 \contentsline {subsection}{\numberline {2.1}Action m\IeC {\'e}canique de pesanteur}{6}{subsection.2.1}
