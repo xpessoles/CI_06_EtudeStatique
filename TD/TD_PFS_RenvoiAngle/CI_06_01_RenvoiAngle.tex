@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{false}
+
+\usepackage[%
+    pdftitle={CI 06 : Stat - Modélisation des AM},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 06 : Étude du comportement statique des systèmes}{}}
+
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 1 -- Modélisation des Actions Mécaniques}{
+Partie  -- }}
+
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+%Xavier \textsc{Pessoles}
+}{}}
+
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 06 : Statique\\
+Ch. 1 : Modélisation des AM -- TD 2 -- Lois de Coulomb}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+
+
+
+
+%---------------------------------------------------------------------------
+
+
+\begin{document}
+
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
+
+\begin{center}
+\Large{\textsc{Travaux Dirigés : Modélisation des Actions Mécaniques}}
+\end{center}
+\begin{flushright}
+\textit{D'après Ressources de JP Pupier.}
+\end{flushright}
+\vspace{.5cm}
+
+
+
+\subsection*{Renvoi d'angle}
+\ifthenelse{\boolean{prof}}{}{}
+
+Ce renvoi d'angle permet de faire tourner un arbre vertical à partir du mouvement d'un arbre horizontal 9. Il comprend un engrenage à pignons coniques 5 et 6.
+
+
+\begin{center}
+\includegraphics[width=.9\textwidth]{images/fig_01}
+\end{center}
+
+
+
+\subparagraph{}
+\textit{Faire le schéma architectural du sous ensemble formé par les pièces 1, 9, 10, 11, 7 et 6. Ceci permettra de modéliser correctement les deux roulements en fonction de leur type mais aussi de leur montage.}
+
+On donne $\vect{AB}=50\vect{x}$, $\vect{AC}=95\vect{x}$, $\vect{AD}=131\vect{x}$, $\vect{DE}=28\vect{y}$ (valeurs en mm). 
+
+On note $\torseurstat{T}{5}{6}$ le torseur d'efforts qu'exerce le pignon 5 sur le pignon 6. Il s'agit d'une force de point d'application E perpendiculaire à la surface de la denture (voir vue suivant F figure suivante).
+
+LA résultante du  $\torseurstat{T}{5}{6}$ est composé des trois forces perpendiculaires $\vect{A}$, $\vect{R}$ et $\vect{T}$. 
+
+\begin{rem}
+\begin{itemize}
+\item $A$ pour effort axial, c'est-à-dire parallèle à l'axe du pignon;
+\item $R$ pour effort radial : c'est une force qui est perpendiculaire à l'axe du pignon et qui donc le coupe en $D$;
+\item $T$ pour effort tangentiel car il est tangent au cône primitif. C'est la seule force utile;
+\item $\delta$ est l'angle primitif du pignon conique;
+\item $\alpha$ est l'angle de pression de la denture. La valeur de cet angle est normalisée.
+\end{itemize}
+\end{rem}
+
+\subparagraph{}
+\textit{Exprimer  $\torseurstat{T}{5}{6}$ en fonction de $T$, $\alpha$ et $\delta$. }
+
+\begin{hypo}
+\begin{itemize}
+\item Le poids des pièces est négligé.
+\item Le frottement est négligé.
+\item Le couple moteur fourni à l'arbre 9 vaut 5 m.daN. Son vecteur moment est colinéaire à x est il de sens négatif sur ce même axe. Il s'applique en A.
+\item $\alpha = 20\textdegree$; $\delta = 54\textdegree$.
+\end{itemize}
+\end{hypo}
+
+\subparagraph{}
+\textit{Donner le torseur des actions mécanique de la liaison rotule en $B$.}
+
+\subparagraph{}
+\textit{Donner le torseur des actions mécanique de la liaison linéaire annulaire en $C$ puis en $D$. }
+
+
+\subparagraph{}
+\textit{Donner le torseur des actions mécanique du pignon en $E$. }
+
+\subparagraph{}
+\textit{Donner le torseur d'un couple moteur pur en $C$ puis en $E$.}
+
+\subparagraph{}
+\textit{Faire la somme des torseurs.}
+
+
+\subparagraph{}
+\textit{Résoudre le système d'équations.}
+\end{document}
+
+
+
+
