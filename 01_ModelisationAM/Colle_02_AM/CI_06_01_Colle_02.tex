@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{false}
+
+\usepackage[%
+    pdftitle={CI 06 : Stat - Modélisation des AM},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 06 : Étude du comportement statique des systèmes}{}}
+
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 1 -- Modélisation des Actions Mécaniques}{
+Partie  -- }}
+
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+Xavier \textsc{Pessoles}}{}}
+
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 06 : Statique\\
+Ch. 1 : Modélisation des AM -- Exercice de colle}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+
+
+
+
+%---------------------------------------------------------------------------
+
+
+\begin{document}
+
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
+
+\begin{center}
+\Large{\textsc{Exercices de colle}}
+\end{center}
+
+\vspace{.5cm}
+
+
+\subsection*{Exercice 1 : Masse et centre d'inertie}
+\begin{flushright}
+\textit{D'après Agati et al., Mécanique du solide, Applications industrielles, Dunod.}
+\end{flushright}
+\setcounter{subparagraph}{0}
+
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+\includegraphics[width=.95\textwidth]{images/disque}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.65\linewidth}
+Soit une plaque homogène, d'épaisseur négligeable, ayant la forme d'un quart de cercle de rayon $r$. Le matériau est de masse surfacique $\mu$.
+
+\subparagraph{}
+\textit{Déterminer la masse du solide.}
+
+\subparagraph{}
+\textit{Déterminer la position du centre de gravité.}
+\ifthenelse{\boolean{prof}}{
+\begin{corrige}
+OG = \dfrac{4\sqrt{2}}{3\pi} r 
+\end{corrige}
+}{}
+
+
+\subparagraph{}
+\textit{Répondre aux même questions pour un huitième de boule.}
+
+\end{minipage}
+
+
+\subsection*{Détermination des actions mécaniques}
+\setcounter{subparagraph}{0}
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+%\includegraphics[width=\textwidth]{images/vanne}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.52\linewidth}
+Deux rotors verticaux de 2 mètres de diamètre et de 8 mètres de hauteur, en rotation autour de leur axe à la vitesse de 200 tr/min sont utilisés pour la propulsion d'un navire. 
+
+Le vecteur vitesse relative $V_0 \vect{x}$ du vent par rapport au navire est de 40 km/h et il est perpendiculaire au navire. 
+
+La force propulsive qui entraine le navire est due à l'\textit{effet Magnus} : lorsqu'on place dans un courant d'air un cylindre animé d'un mouvement de rotation autour de son axe, le cylindre met en mouvement de rotation autour de son axe, le cylindre met en mouvement par viscosité les filets fluides qui le contournent, et qui engendrent alors une action mécanique sur le cylindre, représentée par une force perpendiculaire à la direction du courant d'air dont le sens dépend du sens de rotation du cylindre. 
+%Cet effet explique aussi la courbe que présente la trajectoire d'une balle de tennis coupée. 
+\end{minipage}
+
+\vspace{.25cm}
+
+On montre en aérodynamique que dans un tel écoulement la répartition des pressions sur le cylindre est :
+$$
+\vect{p}(M)=-\dfrac{1}{2}\rho V_0^2 \left[ 1-\left( \dfrac{\omega r}{V_0}-2\sin\alpha\right)^2\right]\vect{n}
+$$
+
+On note : 
+\begin{itemize}
+\item $\rho=1,225\; kg/m^3$ : masse volumique de l'air; 
+\item $V_0$ : vitesse du vent suivant $(O,\vect{x})$;
+\item $\omega$ : vitesse de rotation du cylindre autour de l'axe $(O,\vect{z})$;
+\item $r$ : rayon du cylindre;
+\item $\vect{n}$ : vecteur unitaire normal à la surface latérale du cylindre, orienté vers l'extérieur du cylindre;
+\item $\alpha = \left( \vect{x};\vect{n}\right)$.
+\end{itemize}
+
+$V_0$ et $\omega$ sont algébriques.
+
+\subparagraph{}
+\textit{Montrer que la résultante générale des pressions aérodynamiques est par unité de longueur du cylindre :
+$$
+\vect{F}=-2\pi \rho  V_0 \omega r^2 \vect{y}
+$$}
+\ifthenelse{\boolean{prof}}{
+\begin{corrige}
+
+\end{corrige}}{}
+
+\subparagraph{}
+\textit{En dédire la forme propulsive théorique qui entraîne le navire.}
+\ifthenelse{\boolean{prof}}{
+\begin{corrige}
+
+\end{corrige}}{}
+
+\end{document}
+
+
