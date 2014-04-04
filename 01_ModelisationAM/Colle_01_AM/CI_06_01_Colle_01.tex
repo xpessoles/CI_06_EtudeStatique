@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{false}
+
+\usepackage[%
+    pdftitle={CI 06 : Stat - Modélisation des AM},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 06 : Étude du comportement statique des systèmes}{}}
+
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 1 -- Modélisation des Actions Mécaniques}{
+Partie  -- }}
+
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+Xavier \textsc{Pessoles}}{}}
+
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 06 : Statique\\
+Ch. 1 : Modélisation des AM -- Exercice de colle}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+
+
+
+
+%---------------------------------------------------------------------------
+
+
+\begin{document}
+
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
+
+\begin{center}
+\Large{\textsc{Exercices de colle}}
+\end{center}
+
+\vspace{.5cm}
+
+
+\subsection*{Exercice 1 : Masse et centre d'inertie}
+\begin{flushright}
+\textit{D'après Agati et al., Mécanique du solide, Applications industrielles, Dunod.}
+\end{flushright}
+\setcounter{subparagraph}{0}
+
+\begin{minipage}[c]{.3\linewidth}
+\begin{center}
+\includegraphics[width=.95\textwidth]{images/cone}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.65\linewidth}
+Soit un cône de révolution de hauteur $h$ et de rayon de bas $r$ dont le matériau est de masse volumique $\mu$.
+
+\subparagraph{}
+\textit{Déterminer la masse du solide. Après avoir décrit un élément de surface intésimal de surface, on s'attachera à décrire précisément le domaine de variation des différents paramètres.}
+
+\subparagraph{}
+\textit{Déterminer la position du centre de gravité.}
+\ifthenelse{\boolean{prof}}{
+\begin{corrige}
+Pour le cône creux sans épaisseur, 
+\vect{OG} = \dfrac{2}{3} h
+\end{corrige}
+}{}
+
+\end{minipage}
+
+
+\subsection*{Détermination des actions mécaniques}
+\setcounter{subparagraph}{0}
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=\textwidth]{images/vanne}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.52\linewidth}
+Une vanne schématisée par un secteur circulaire de centre $C$ et de rayon $r=1,2\; m$ ferme une retenue d'eau pour laquelle la hauteur de la surface libre est $h=1,2\; m$.
+
+L'eau exerce sur la surface du secteur une action mécanique définie par la densité surfacique suivante : 
+$$
+\vect{f(M)} = -\rho_e g\left(h-z\right)\vect{n}
+$$
+avec :
+\begin{itemize}
+\item $\rho_e = 1 \; kg/dm^3$ : masse volumique de l'eau;
+\item $g = 9,81\; m/s^2$ : accélération de la pesanteur;
+\item $z$ : abscisse du point $M$;
+\item $\vect{n}$ : vecteur unitaire normal à la surface de contact, dirigé vers l'extérieur du secteur.
+\end{itemize}
+\end{minipage}
+
+\subparagraph{}
+\textit{Déterminer la résultante générale $\vect{R}$ du torseur d'action mécanique de l'eau sur la vanne.}
+\ifthenelse{\boolean{prof}}{
+\begin{corrige}
+On trouve $||\vect{R}||=469\; daN$. $\left(\vect{x},\vect{R}\right)=67,85\degrees$.
+\end{corrige}}{}
+\subparagraph{}
+\textit{Déterminer au point $C$ le moment de la force de l'action de l'eau sur le barrage.}
+
+\ifthenelse{\boolean{prof}}{
+\begin{corrige}
+
+\end{corrige}}{}
+
+\end{document}
+
+
