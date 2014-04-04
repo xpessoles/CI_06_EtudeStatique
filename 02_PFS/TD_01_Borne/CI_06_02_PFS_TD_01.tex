@@ -1,0 +1,164 @@
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{false}
+
+\usepackage[%
+    pdftitle={CI 06 : Stat - Modélisation des AM},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 06 : Étude du comportement statique des systèmes}{}}
+
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 1 -- Modélisation des Actions Mécaniques}{
+Partie  -- }}
+
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+%Xavier \textsc{Pessoles}
+}{}}
+
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 06 : Statique\\
+Ch. 2 : PFS -- TD -- Borne rétractable}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+
+
+
+
+%---------------------------------------------------------------------------
+
+
+\begin{document}
+
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
+
+\begin{center}
+\Large{\textsc{Travaux Dirigés : Principe fondamental de la statique}}
+\end{center}
+\begin{flushright}
+\textit{D'après concours ATS 2010.}
+\end{flushright}
+\vspace{.5cm}
+
+\section*{Borne rétractable}
+\begin{minipage}[c]{.4\linewidth}
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/borne}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.59\linewidth}
+Le dispositif étudié est un système permettant de limiter ou d’interdire la circulation
+dans des zones à accès réservé. Ce dispositif comporte :
+\begin{itemize}
+\item un caisson intégrant la partie opérative, à savoir une borne motorisée rétractable dans le sol;
+\item un caisson intégrant la partie commande comportant :
+\begin{itemize}
+\item une platine électronique de gestion;
+\item une batterie d’alimentation électrique du système;
+\item des cellules photovoltaïques assurant la charge de la batterie.
+\end{itemize}
+\end{itemize}
+\end{minipage} 
+
+\begin{minipage}[c]{.3\linewidth}
+On donne ci-contre le schéma d'architecture du mécanisme.
+
+\vspace{.5cm}
+
+\begin{itemize}
+\item 0 : bâti
+\item 1 : chariot
+\item 2 : motoréducteur
+\item 3 : pignon
+\end{itemize}
+
+\vspace{.5cm}
+
+\begin{itemize}
+\item $\vect{OA} = - \dfrac{h}{2} \vect{y}$
+\item $\vect{OB} = \dfrac{h}{2} \vect{y}$
+\item $\vect{OC} = l \vect{z}$
+\item $\vect{OG} = d \vect{x} + L\vect{z}$
+\end{itemize}
+
+\vspace{.5cm}
+La masse de la borne (enemble chariot) est de 80 kg.
+
+\end{minipage} \hfill
+\begin{minipage}[c]{.6\linewidth}
+\begin{center}
+\includegraphics[width=.9\textwidth]{images/schema}
+\end{center}
+\end{minipage} 
+
+Afin de limiter les efforts résistants liés aux frottements dans les guidages en translation du chariot, le constructeur a choisi de placer un contrepoids qui permet de positionner le centre de gravité $G$ de la partie mobile liée au chariot à la distance
+$d$ de la ligne de référence de la crémaillère.
+
+On se propose d’étudier la position du contrepoids permettant de minimiser les pertes par frottement dans le guidage du chariot 1 et ainsi
+augmenter l’autonomie du système.
+\begin{hypo}
+\begin{itemize}
+\item La détermination de la position du contrepoids est effectuée pour la montée à
+vitesse constante ce qui justifie une étude en statique.
+%\item Les frottements ne sont pas négligés dans les liaisons pivot glissant
+%constituant le guidage du chariot par rapport au bâti. On prendra un facteur de frottement $\tan \varphi = 0,22$.
+\item Le poids du chariot et de tous les éléments embarqués (motoréducteur, borne,
+etc.) n’est pas négligé. On considère la masse totale : $m = 30\;  kg$ et
+l’accélération de la pesanteur : $g = 10 \; m\cdot s^{-2}$.
+\item On suppose que les résultantes des actions mécaniques transmissibles par
+les liaisons en $A$ et $B$ sont situées respectivement dans les plans $(A,\vect{x},\vect{z})$ et
+$(B,\vect{x},\vect{z})$ . En outre, elles présentent une symétrie par rapport au plan $(O,\vect{x},\vect{z})$.
+\end{itemize}
+\end{hypo}
+On donne le torseur des actions mécaniques exercées par 0 sur 3 au point $C$ :
+
+$$
+\torseurstat{T}{0}{3}=\torseurl{X_{03}\vect{x}+Z_{03}\vect{z}}{\vect{0}}{C,\mathcal{R}} \quad \text{avec } \tan\alpha = -\dfrac{X_{03}}{Z_{03}}
+$$
+
+
+\subparagraph{}
+\textit{Quelle disposition constructive (quelle solution technologique) proposeriez-vous pour satisfaire l'exigence ***. Comment l'integreriez-vous dans le dispositif proposé ?}
+
+\subparagraph{}
+\textit{Réalier le graphe des liaisons du système. Indiquez sur ce graphe les actions mécaniques extérieures. }
+
+\subparagraph{}
+\textit{On isole l'ensemble $E=\{1+2+3\}$. Réaliser le bilan des actions mécaniques s'exerçant sur $E$. }
+
+
+\subparagraph{}
+\textit{Faire l'inventaire des grandeurs inconnues. Combien d'inconnues peut permettre le PFS ? Que pouvez-vous en conclure ?}
+
+\subparagraph{}
+\textit{Appliquer le PFS en $O$.}
+
+
+\subparagraph{}
+\textit{Déterminer les inconnues. }
+
+
+\end{document}
+
+
