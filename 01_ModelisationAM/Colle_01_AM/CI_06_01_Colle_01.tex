@@ -78,15 +78,14 @@ Soit un cône de révolution de hauteur $h$ et de rayon de bas $r$ dont le maté
 
 \subparagraph{}
 \textit{Déterminer la position du centre de gravité.}
-\ifthenelse{\boolean{prof}}{
-
 \end{minipage}
-
+\ifthenelse{\boolean{prof}}{
 \begin{corrige}
 Il est possible d'exprimer un élément volumique en coordonnée cylindrique :
 $$
-dm =\mu  d\mathcal{V}= \mu \rho d\theta d\rho dz
+dm =\mu  d\mathcal{V}= \mu \dfrac{1}{2}\rho d\theta d\rho dz
 $$
+(Le $\dfrac{1}{2}$ vient du fait que l'élément infinitésimal surfacique est un triangle dont l'aire est $\dfrac{1}{2}d\rho dz$)
 \begin{itemize}
 \item $\rho$ varie de 0 à $r$;
 \item $z$ varie de 0 à $\rho \dfrac{h}{r}$;
@@ -94,14 +93,33 @@ $$
 \end{itemize}
 
 $$
-m = \mu \int\limits_{0}^{r} \int\limits_{0}^{2\pi} \int\limits_{0}^{\rho \dfrac{h}{r}} \rho dz d\theta d\rho
-= \mu \int\limits_{0}^{r} \int\limits_{0}^{2\pi} \rho^2 \dfrac{h}{r}  d\theta d\rho 
-= \mu \dfrac{h}{r}\dfrac{r^3}{3}2\pi
-= \mu \dfrac{hr^2}{3}2\pi
+m = \dfrac{1}{2} \mu \int\limits_{0}^{r} \int\limits_{0}^{2\pi} \int\limits_{0}^{\rho \dfrac{h}{r}} \rho dz d\theta d\rho
+= \dfrac{1}{2}\mu \int\limits_{0}^{r} \int\limits_{0}^{2\pi} \rho^2 \dfrac{h}{r}  d\theta d\rho 
+= \dfrac{1}{2} \mu \dfrac{h}{r}\dfrac{r^3}{3}2\pi
+= \dfrac{1}{2} \mu \dfrac{hr^2}{3}2\pi
+=  \mu \dfrac{hr^2}{3}\pi
 $$
 
-Pour le cône creux sans épaisseur, 
-$$\vect{OG} = \dfrac{2}{3} h$$
+
+
+
+Par définition du centre de gravité, 
+$$
+\vect{OG} = \dfrac{1}{m}  \mu \int\limits_{0}^{r} \int\limits_{0}^{2\pi} \int\limits_{0}^{\rho \dfrac{h}{r}} \vect{OM}\; \dfrac{1}{2}\rho dz d\theta d\rho
+$$
+
+En raison de l'axi-symétrie de la surface, $G$ est suivant l'axe $\vect{z}$. Ainsi : 
+$$
+\vect{OG} = \dfrac{1}{m}  \mu \int\limits_{0}^{r} \int\limits_{0}^{2\pi} \int\limits_{0}^{\rho \dfrac{h}{r}} z\vect{z}\; \dfrac{1}{2}\rho dz d\theta d\rho
+=\dfrac{\mu }{2 m} 2\pi \vect{z} \int\limits_{0}^{r} \dfrac{1}{2}\rho^3 \dfrac{h^2}{r^2} d\rho
+=\dfrac{\mu }{2 m} 2\pi  \dfrac{1}{2}\dfrac{h^2}{r^2}\dfrac{r^4}{4} \vect{z}
+=\dfrac{\mu \pi}{2 m}  \dfrac{h^2r^2}{4} \vect{z}
+=\dfrac{3}{2 }  \dfrac{h}{4} \vect{z}
+$$
+
+On doit trouver $\dfrac{3h}{4} \vect{z}$
+
+
 \end{corrige}
 }{}
 
@@ -142,6 +160,59 @@ On trouve $||\vect{R}||=469\; daN$. $\left(\vect{x},\vect{R}\right)=67,85\textde
 \begin{corrige}
 
 \end{corrige}}{}
+
+\subsection*{Exercice 3 : Frein à disque}
+\setcounter{subparagraph}{0}
+\begin{flushright}
+\textit{D'après ressources de Florestan Mathurin.}
+\end{flushright}
+\begin{minipage}[c]{.6\linewidth}
+Pour ralentir ou immobiliser un système en mouvement, il est nécessaire de disposer d'un système de freinage. Le frein à disque est une solution technique permettant de réaliser le freinage d'un véhicule (moto, automobile...). Il est constitué d'un disque fixé sur le moyeu ou la jante de la roue (disque ayant le même mouvement de rotation que la roue) ainsi que des plaquettes venant frotter de chaque côté du disque. Les plaquettes sont maintenues dans un étrier lié au véhicule. Un ou plusieurs mécanismes poussent sur les plaquettes, le plus souvent des pistons hydrauliques, les plaquettes viennent serrer fortement le disque. La force de frottement entre les plaquettes et le disque crée un couple de freinage diminuant voire immobilisant la rotation de la roue. 
+\end{minipage} \hfill
+\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[width=\textwidth]{images/frein1}
+\end{center}
+\end{minipage}
+
+\begin{minipage}[c]{.4\linewidth}
+\begin{center}
+\includegraphics[width=.95\textwidth]{images/frein2}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.57\linewidth}
+L'appui sur la pédale de frein entraîne une augmentation de pression qui se retrouve au niveau des pistons. Ceux-ci poussent les plaquettes contre le disque. Un effort normal au disque apparaît alors. Par le frottement des plaquettes sur le disque, les efforts tangentiels viennent créer le couple de freinage. 
+\end{minipage}
+
+On utilise le modèle suivant pour déterminer la relation entre l'effort presseur N exercé sur les plaquettes et le couple de freinage C dans un frein à disque. 
+
+\begin{minipage}[c]{.4\linewidth}
+\begin{center}
+\includegraphics[width=\textwidth]{images/frein3}
+\end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.55\linewidth}
+La plaquette est modélisée par une portion de couronne de rayons $r_1$ et $r_2$ et d'angle $2\alpha$ considérée en liaison glissière avec le bâti 0 suivant l’axe $(O,\vect{z})$. 
+
+On note $M$ un point de la plaquette défini en coordonnées polaires par $\vect{OM}=r\vect{e_r}$
+avec $\theta=\left(\vect{x},\vect{e_r}\right)$.
+On note $p$ la pression exercée par les plaquettes sur le disque d’épaisseur 2e. On suppose que la pression $p$ est constante.  
+
+On note $f$ (constante) le facteur de frottement entre les plaquettes et le disque.  On note N la résultante sur l’axe $\vect{z}$ de l'action mécanique exercée par un piston sur une plaquette. 
+\end{minipage}
+
+
+
+\subparagraph{}
+\textit{En précisant le théorème utilisé et le système isolé, déterminer une relation entre $p$ et $N$ en fonction de $r_1$ , $r_2$  et $\alpha$. }
+
+\subparagraph{}
+\textit{Sachant que lors du freinage il y a glissement et que $\vecto{1}{0}=\dot{\theta}_{10}\cdot \vect{z}$ avec $\dot{\theta}_{10}>0$, déterminer l'action mécanique élémentaire de 2 sur 1 et le modèle local de l’action mécanique de 2 sur 1 au point $O$. }
+
+\subparagraph{}
+\textit{Déterminer le torseur de l'action mécanique globale de 2 sur 1 au point O. En déduire le couple de freinage en fonction de $\alpha$, $N$, $f$, $r_1$ et $r_2$ sachant qu'il y a deux surfaces de frottement (une plaquette de part et d'autre du disque). }
+
+
 
 \end{document}
 
