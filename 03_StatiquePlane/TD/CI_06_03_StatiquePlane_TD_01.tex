@@ -1,85 +1,165 @@
-\documentclass[11pt,oneside]{article}
-\input{coursHeadings}
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{true}
 
 \usepackage[%
-    pdftitle={TD Statique},
+    pdftitle={CI 06 : Stat - Problèmes plans},
     pdfauthor={Xavier Pessoles},
     colorlinks=true,
     linkcolor=blue,
     citecolor=magenta]{hyperref}
 
 
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 6 : Étude du comportement statique des systèmes}{}}
 
-% \makeatletter \let\ps@plain\ps@empty \makeatother
-%% DEBUT DU DOCUMENT
-%% =================
-\sloppy
-\hyphenpenalty 10000
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 3 -- Résolution des problèmes de statique plane}{
+Partie  -- }}
 
-\newcommand{\Pointilles}[1][3]{%
-\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[\parskip]
-}}
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+Xavier \textsc{Pessoles}
+}{}}
 
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 6 : Statique\\
+Ch. 3 : Statique plane -- TD}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+%---------------------------------------------------------------------------
 
 \begin{document}
 
-
-\newboolean{prof}
-\setboolean{prof}{false}
-%------------- En tetes et Pieds de Pages ------------
-\pagestyle{fancy}
-\renewcommand{\headrulewidth}{0pt}
-
-\fancyhead{}
-\fancyhead[L]{%
-\begin{minipage}[c]{1.6cm}
-\includegraphics[width=1.4cm]{png/logo_jh_ptsi.png}%
-\end{minipage}
-\rule{2cm}{.5pt}
-}
-
-\fancyhead[C]{\rule{12cm}{.5pt}}
-
-\fancyhead[R]{%
-\begin{minipage}[c]{3cm}
-\begin{flushright}
-\footnotesize{\textit{\textsf{Sciences Industrielles\\ pour l'Ingénieur}}}%
-\end{flushright}
-\end{minipage}
-}
-
-\renewcommand{\footrulewidth}{0.2pt}
-
-\fancyfoot[C]{\footnotesize{\bfseries \thepage}}
-\fancyfoot[L]{\footnotesize{2011 -- 2012} \\ X. \textsc{Pessoles}}
-\ifthenelse{\boolean{prof}}{%
-\fancyfoot[R]{\footnotesize{TD -- CI 3 : Statique -- P}}
-}{%
-\fancyfoot[R]{\footnotesize{TD -- CI 3 : Statique}}
-}
-
-
-%\begin{center}
-%\textit{Centre d'intérêt}
-%\end{center}
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
 
 \begin{center}
- \huge\textsc{CI 3 -- Statique : Modélisation, prévision et vérification du comportement statique des systèmes}
+\Large{\textsc{Travaux Dirigés}}
 \end{center}
+
+
+
+\section*{Suspension arrière de VTT}
+
+%\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[height=4cm]{images/vtt1}
+\hspace{1.5cm}
+\includegraphics[height=4cm]{images/vtt2}
+\end{center}
+%\end{minipage}
+
+On se propose d’étudier la transmission des efforts dans une suspension arrière de VTT Kona
+« Dawg» de « back country » .
+
+Le basculeur 4 est en liaison pivot avec le cadre, d'une part, et il est articulé sur le hauban 3 et sur le
+demi combiné 5 (voir schéma cinématique page suivante et photo de la suspension arrière ci
+dessous).
+Le cadre du VTT est considéré comme fixe, et on applique à la roue arrière un glisseur vertical $(A,\vect{y})$
+au point de contact $A$, de module $700\;N$ par l'intermédiaire du support 7, simulant l’action du sol
+lorsque le pilote est assis sur le vélo.
+
+L'exercice consiste à déterminer graphiquement l’effort exercé sur l’ensemble (ressort pneumatique
+/ amortisseur) (5+6), puis déterminer la pression d’air à établir sous charge dans le ressort
+pneumatique (identique à un vérin simple effet dont l’orifice serait bouché).
+Le problème est considéré plan, les pivots transmettent donc des glisseurs.
+
+\subparagraph{}
+\textit{Tracer $\vect{A_{7\rightarrow2}}$ puis déterminer $\vect{A_{4\rightarrow5}}$ , en expliquant soigneusement la méthode.
+Le diamètre du piston du « vérin » de suspension (ressort pneumatique) est de 40 mm.}
+
+\subparagraph{}
+\textit{Déterminer la pression (relative) régnant dans la chambre sous la charge statique
+calculée précédemment, en précisant son unité.}
+
 
 \begin{center}
- \LARGE\textsc{Chapitre 3 -- Étude graphique} 
+\includegraphics[width=.9\textwidth]{images/vtt3}
 \end{center}
 
-%\setcounter{paragraph}{0}
-\vspace{.5cm}
+\newpage
+
+\section*{Grue portuaire}
+
+\begin{minipage}[c]{.6\linewidth}
+Les grues portuaires permettent de transporter des marchandises pour les débarquer des bateaux sur les quais ou pour charger les marchandises dans les bateaux. Ces systèmes sont toujours équipés d'un frein de sécurité qui permet de freiner la chute des objets à porter au cas où un dysfonctionnement apparaîtrait. L'objectif est de vérifier si le frein de sécurité, dont on donne un extrait de cahier des charges ci dessous, permet de satisfaire le niveau du critère de la fonction FS1. 
+\end{minipage}\hfill
+\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[width=.95\textwidth]{images/grue}
+\end{center}
+\end{minipage}
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/fonctions}
+\end{center}
+
+Le schéma cinématique du frein est fourni sur la figure de la page suivante. L'objet à porter repéré 8 sur le schéma est soumis à la gravité. On néglige la passe de toutes les autres pièces. La pige 9 relie les pièces 2, 3 et 4 au point $B$, toutes en liaison pivot par rapport à la pige 9. 
+
+Toutes les liaisons sont parfaites sauf le contact entre 5 et 7 et entre 6 et 7, respectivement aux points $G$ et $H$ qui se font avec frottement. Le coefficient de frottement est de 0,15. On se placera à la limite du glissement qui correspond au cas extrême.
+
+On pourra faire l'hypothèse que le problème est plan.
+
+\subparagraph{}
+\textit{Déterminer si, pour serrer le frein, la haute pression dans le vérin doit se situer dans la cavité supérieure ou inférieure.}
+
+\subparagraph{}
+\textit{La pression dans le vérin est de 200 bars. La section du vérin est de $30\; cm^3$. Déterminer l'effort que le vérin exerce sur 9 pour serrer le frein.}
+
+\subparagraph{}
+\textit{Tracer le graphe d'analyse associé au système.}
+
+\subparagraph{}
+\textit{Après avoir isolé le solide 2, appliquer le PFS et déterminer les inconnues de liaisons.}
+
+\subparagraph{}
+\textit{Après avoir isolé les solides 3 et 4, appliquer le PFS et déterminer les inconnues de liaisons.}
+
+\subparagraph{}
+\textit{Après avoir isolé le solide 9, appliquer le PFS et déterminer les inconnues de liaisons.}
+
+\subparagraph{}
+\textit{Après avoir isolé le solide 5, appliquer le PFS et déterminer les inconnues de liaisons.}
+
+\subparagraph{}
+\textit{Après avoir isolé le solide 6, appliquer le PFS et déterminer les inconnues de liaisons.}
+
+\subparagraph{}
+\textit{On donne $||\vect{KG}||=||\vect{KH}||=12\;cm$. Déterminer le couple de freinage qui s'exerce sur les pièces 5, 6 et 7. }
+
+\subparagraph{}
+\textit{On donne $||\vect{KJ}||=8\;cm$. Calculer le poids maximal de l'objet que le frein de sécurité peut freiner. Conclure quant à la capacité du frein de sécurité à satisfaire le niveau du critère de la fonction FS1.}
+
+
+\begin{center}
+\includegraphics[width=.55\textwidth]{images/grue2}
+\end{center}
+
+
+\newpage
+
+
 
 \section*{Porte d'autobus}
 
 On considère un système d'ouverture de porte d'autobus dont on donne un extrait du cahier des charges ci-dessous.
 
 \begin{center}
-\includegraphics[width=.9\textwidth]{png/img1.png}
+\includegraphics[width=.9\textwidth]{images/img1.png}
 \end{center}
 
 (L'effort maximal de fermeture est de 90\; N).
@@ -90,19 +170,19 @@ Lorsque la porte se ferme, il ne faut pas qu'elle exerce une force trop importan
 
 Tous les tracés graphiques se feront sur la figure de la page suivante. 
 
-\paragraph{}
+\subparagraph{}
 \textit{En isolant la pièce 3, déterminer graphiquement les efforts dans les liaisons en $B$ et $C$. Faire les constructions graphiques en rouge.}
 
-\paragraph{}
+\subparagraph{}
 \textit{Déterminer la direction de l'effort dans la liaison $F$ en argumentant.}
 
-\paragraph{}
+\subparagraph{}
 \textit{En isolant la pièce 2, déterminer graphiquement les efforts dans les liaisons en $A$ et $F$. Faire les constructions graphiques en bleu.}
 
-\paragraph{}
+\subparagraph{}
 \textit{Déterminer si haute pression est dans la cavité intérieure gauche ou droite du vérin.}
 
-\paragraph{}
+\subparagraph{}
 \textit{La surface du piston $S=3cm^2$, et la pression dans le vérin étant limité à 1 MPa, conclure quant à la capacité de la porte d'autobus à satisfaire le niveau du critère de force maximale de fermeture de la fonction FS1.}
 
 \newpage
@@ -112,28 +192,28 @@ Tous les tracés graphiques se feront sur la figure de la page suivante.
 \vspace{15cm}
 
 \begin{center}
-\includegraphics[width=.9\textwidth]{png/img2.png}
+\includegraphics[width=.9\textwidth]{images/img2.png}
 \end{center}
 
 \newpage
 
 \section*{Barrage de la Tamise}
-\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
 
 Le Thames Barrier est un barrage spectaculaire conçu pour protéger la ville de Londres des marées exceptionnellement élevées qui peuvent remonter de la mer. Sa construction terminée en 1982 a nécessité $51\;000$ tonnes d'acier $210\;000 \; m^3$ de béton, ce qui en fait le deuxième barrage mobile le plus grand du monde. 
 
 \begin{center}
-\includegraphics[width=.4\textwidth]{png/img3.png}
+\includegraphics[width=.4\textwidth]{images/img3.png}
 \end{center}
 
 La structure s'étend sur 520 mètres de large et est constituée de 10 portes en forme de secteur angulaire de 20 mètres de haut. Chaque porte est totalement effacée dans un berceau en béton coulé au fond de la rivière. En cas de montée des eaux, les portes pivotent en position verticale par une machinerie hydraulique. 
 
 \begin{center}
-\includegraphics[width=.9\textwidth]{png/img4.png}
+\includegraphics[width=.9\textwidth]{images/img4.png}
 \end{center}
 
 \begin{center}
-\includegraphics[width=.9\textwidth]{png/img5.png}
+\includegraphics[width=.9\textwidth]{images/img5.png}
 \end{center}
 
 Le système qui peut être considéré comme plan est constitué de : 
@@ -147,33 +227,35 @@ Le système qui peut être considéré comme plan est constitué de :
 
 L'objectif et de vérifier ou non le critère de la FS2 dans le cas extrême où \textbf{seule la tige du vérin 5 est active suite à une rupture de la biellette 4'}.
 
-\paragraph{} 
+\subparagraph{} 
 \textit{L'action mécanique de l'eau sur la porte est modélisée globalement par une force $\vect{F_{eau\rightarrow 1}}$ telle que : $\vect{F_{eau\rightarrow 1}}=\left[\begin{array}{c}
 -2\cdot10^{6}\; N \\
 -1\cdot10^{6}\; N \\ 
 0\; N 
 \end{array}\right]_{(\vect{x_0},\vect{y_0},\vect{z_0})}$. Déterminer dans la position représentée graphiquement l'action mécanique de la biellette 4 sur la tige de vérin 5.}
 
-\paragraph{} 
+\subparagraph{} 
 \textit{Pour un diamètre de piston de 300\; mm, déterminer la pression dans la chambre de vérin et conclure vis-à-vis du Cahier des Charges Fonctionnel.}
 
 
 \begin{center}
-\includegraphics[height=.9\textheight]{png/img6.png}
+\includegraphics[height=.9\textheight]{images/img6.png}
 \end{center}
 
+\newpage
+
 \section*{Cric hydraulique}
-\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
 Un cric hydraulique étudié est utilise pour soulever une voiture afin de réaliser des opérations de maintenance. Le système est actionné par un vérin hydraulique piloté par une pompe hydraulique à commande manuelle. L'objectif est de vérifier le critère de force maximale à déployer de la fonction FS1. 
 
 
 \begin{center}
-\includegraphics[width=.9\textwidth]{png/img7.png}
+\includegraphics[width=.9\textwidth]{images/img7.png}
 \end{center}
 
 
 \begin{center}
-\includegraphics[width=.9\textwidth]{png/img8.png}
+\includegraphics[width=.9\textwidth]{images/img8.png}
 \end{center}
 
 Le cric repose sur le sol. La voiture est en appui sur une sellette. L'utilisateur appuie sur un vérin de commande ce qui met en pression l'huile d'un vérin et crée les efforts nécessaires pour soulever la voiture. Un mécanisme de transformation du mouvement \{bras de levage+biellette\} permet d'adapter l'effort. Le vérin 4 est constitué de de deux pièces : le corps du vérin et la tige du vérin. La liaison entre ces deux pièces peut être modélisée par une liaison pivot glissant (ou glissière dans le plan). D'autre part, l'huile présente dans le vérin exerce une force sur ces deux pièces. La voiture exerce la force $P$ sur la sellette 3, et on recherche la pression de l'huile dans le vérin. 
@@ -190,37 +272,39 @@ Description des liaisons :
 \item vérin 4 et bâti 1 : pivot en $C$.
 \end{itemize}
 
-\paragraph{}
+\subparagraph{}
 \textit{Tracer le graphe d'analyse du système. Faire apparaître la force $P$.}
 
-\paragraph{}
+\subparagraph{}
 \textit{Ajouter sur le document réponse les numéros de pièces correspondant ainsi que les points des différentes liaisons.}
 
-\paragraph{}
+\subparagraph{}
 \textit{Déterminer la direction des actions mécaniques s'exerçant sur 5.}
 
-\paragraph{}
+\subparagraph{}
 \textit{Déterminer l'ensemble des actions mécaniques exercées sur 3. Réaliser les tracés en rouge sur le document réponse.}
 
-\paragraph{}
+\subparagraph{}
 \textit{Déterminer la direction des actions mécaniques s'exerçant sur 4.}
 
-\paragraph{}
+\subparagraph{}
 \textit{Déterminer l'ensemble des actions mécaniques s'exerçant sur 2. Réaliser les tracés en bleu sur le document réponse. }
 
-\paragraph{}
+\subparagraph{}
 \textit{Déterminer la norme de la force exercée par l'huile sur la tige du vérin, de section $28 cm^2$, lorsque $P$ a la valeur de la force maximale pour soulever de la fonction FS1.}
 
-\paragraph{}
+\subparagraph{}
 \textit{L'utilisateur, par son action sur le levier de commande, met l'huile sous pression, jusqu'à une valeur de 200 bars. Conclure quant à la capacité du cric à satisfaire le critère de force maximale à déployer de la fonction FS1.}
 
 
 
 \begin{center}
-\includegraphics[height=.9\textheight]{png/img9.png}
+\includegraphics[height=.9\textheight]{images/img9.png}
 \end{center}
 
 
 
 
 \end{document}
+
+
