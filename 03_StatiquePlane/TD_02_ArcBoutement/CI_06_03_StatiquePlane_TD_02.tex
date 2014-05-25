@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{true}
+
+\usepackage[%
+    pdftitle={CI 06 : Stat - Problèmes plans},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 6 : Étude du comportement statique des systèmes}{}}
+
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 3 -- Résolution des problèmes de statique plane}{
+Partie  -- }}
+
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+Xavier \textsc{Pessoles}
+}{}}
+
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 6 : Statique\\
+Ch. 3 : Statique plane -- TD 2 -- Arc Boutement}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+%---------------------------------------------------------------------------
+
+\begin{document}
+
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
+
+\begin{center}
+\Large{\textsc{Travaux Dirigés -- Arc Boutement}}
+\end{center}
+
+
+
+\section*{Bride pivotante}
+Pour maintenir une pièce 3 lors de son usinage, on utilise une bride pivotante 1 implantée dans un solide 2. 
+
+Lorsque l’usinage est terminé, on desserre la vis 5 et la bride est poussée vers le haut par le ressort 4. 
+
+On peut alors faire pivoter la bride autour d’un axe vertical et ainsi sortir la pièce vers le haut.
+
+Cette bride est fabriquée par un constructeur d’éléments pour montages d’usinages (Norelem) et existe dans différentes tailles.
+
+L’utilisateur de ces brides doit faire attention à la longueur de guidage notée a pour éviter le phénomène d’arc-boutement.
+
+Le poids des pièces ainsi que la force du ressort sont négligés dans ce qui suit.
+
+\begin{center}
+\includegraphics[width=.7\textwidth]{images/im_01.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=.45\textwidth]{images/im_02.png}
+\end{center}
+
+\subsection*{Desserrage de la pièce}
+
+\subparagraph{}
+\textit{Décrire comment se manifesterait, pour l’utilisateur de la bride, le phénomène d’arc-boutement lorsqu'il desserre la vis pour sortir la pièce.}
+
+Soit $f’$ le facteur d’adhérence entre la bride 1 et le socle 2. On considère la bride en adhérence limite (elle est donc arc-boutée). L’isoler et faire un dessin montrant les efforts appliqués.
+
+\subparagraph{}
+\textit{Faire une étude statique et établir l’expression de a notée ici $a_{lim}$ (valeur de $a$ pour laquelle on passe de l'arc-boutement au non arc-boutement) en fonction de $e$ et de $f’$. Préciser la condition sur a permettant le non-arc-boutement.}
+
+\subsection*{Serrage de la pièce}
+
+Lors du serrage de la pièce, l’arc-boutement se traduirait par une non-répercussion de l’effort exercé par la vis sur le serrage de la pièce (tout étant absorbé par l’adhérence du guidage de 1 dans 2). Pour savoir si le phénomène d’arc-boutement se produit, on doit calculer le rapport effort de réaction de la pièce sur la bride par l’effort exercé par la vis sur la bride.  Isoler 1, faire un dessin montrant les efforts appliqués.
+
+\subparagraph{}
+\textit{Appliquez le PFS, et calculer ce rapport. Conclure.}
+
+On donne : $e=19 \; mm$, $f’=0,3$. 
+
+\subparagraph{}
+\textit{Calculer la valeur numérique de ce rapport pour $a=a_{lim}$ , $a=2a_{lim}$ et pour $a= 3a_{lim}$. Quel est le cas le plus favorable et pourquoi ?}
+
+
+\subparagraph{}
+\textit{Conclure sur les conséquences à tirer de toute cette étude pour éviter tout risque d'arc-boutement et utilisables lors de la conception de mécanismes de ce type.}
+
+
+\section*{Serrage par excentrique}
+\setcounter{subparagraph}{0}
+
+L'excentrique 1 est une pièce composée d'un disque de rayon $R$ et de centre $B$, d'un levier et d'une boule de centre $C$. 1 est lié au bâti 2 par une liaison pivot de centre $A$. L'excentrique 1 serre la pièce 3 contre le bâti 2. La fonction de cet appareil est de maintenir la pièce 3 lors d'un usinage.
+
+\begin{center}
+\includegraphics[width=.6\textwidth]{images/im_03.png}
+\end{center}
+
+Données : 
+\begin{itemize}
+\item Rayon de l'excentrique : $BD = R = 20 \;mm$.
+\item $BC = L =70 \; mm$.
+\item Excentration de 1 : $AB = e = 14 \; mm$.
+\item Angle $ABD = 135\textdegree$.
+\item Angle $DBC = 30\textdegree$.
+\item Facteur de frottement entre 1 et 3 : $f = 0,3$.
+\item Facteur d'adhérence entre 1 et 3 : $f' = 0,4$.
+\item Le poids des pièces est négligé devant les efforts mis en jeu.
+\end{itemize}
+
+On exerce sur 1 un effort    ($||\vect{F}|| = 90\;N$) au point $C$. Isoler 1 (faire un dessin échelle 2), faire le bilan des actions extérieures (justifier la direction et le sens de la force en $D$) sachant qu'il y a glissement au point $D$ avant que l'équilibre soit atteint. 
+\subparagraph{}
+\textit{Déterminer graphiquement les forces en $A$ et $D$ qui s'exercent sur ce solide (échelle des forces : 1 N pour 0,5 mm). Présenter les résultats. }
+
+
+On supprime l'effort $\vect{F}$. Isoler 1 (même échelle pour ce nouveau dessin). Faire le bilan des actions extérieures (justifier la direction de l'effort en D). 
+
+\subparagraph{}
+\textit{Rechercher s'il est possible que 1 soit en équilibre. Justifier votre réponse.}
+\subparagraph{}
+\textit{Calculer la valeur de l'épaisseur minimale de la pièce 3 qui pourra être coincée par l'excentrique 1.}
+\subparagraph{}
+\textit{Rechercher par construction graphique soignée quelle est la valeur maximale de l'épaisseur de la pièce 3 qui pourra rester coincée par l'excentrique 1 sans qu'il y ait maintien d'une action sur la poignée.}
+
+
+
+
+
+\end{document}
+
+

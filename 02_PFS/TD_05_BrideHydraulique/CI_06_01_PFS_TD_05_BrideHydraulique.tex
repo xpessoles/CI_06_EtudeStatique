@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{false}
+
+\newboolean{td}
+\setboolean{td}{true}
+
+
+\usepackage[%
+    pdftitle={CI 06 : Stat - Ch 02 : PFS},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 6 : Étude du comportement statique des systèmes}{
+Chapitre  -- }}
+
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 2 -- Principe Fondamental de la Statique}{
+Partie  -- }}
+
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+Xavier \textsc{Pessoles} \\ 2013 -- 2014}{
+}}
+
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 6 : Statique\\
+Chapitre 2 : PFS -- TD 5}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+
+
+
+
+%---------------------------------------------------------------------------
+
+
+\begin{document}
+
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
+
+\begin{center}
+\large{\textsc{Travaux Dirigés}}
+\end{center}
+
+\begin{flushright}
+\textit{Ressources de Stéphane Genouël.}
+\end{flushright}
+
+
+
+\section*{Bride hydraulique}
+
+\subsection*{Mise en situation}
+Le système étudié a pour fonction de brider (bloquer) des pièces 
+sur une table de machine-outil afin de les usiner par la suite. 
+
+ L’alimentation en énergie hydraulique 
+permet la sortie de l’ensemble piston-tige 4 
+qui fait pivoter le levier 7 par rapport au 
+corps 1 et permet ainsi de plaquer la pièce 
+à usiner sur la table de la machine-outil à 
+l’aide de la vis 8 solidaire du levier 7. 
+Un ressort 5, comprimé lors de la phase de 
+bridage, permet la rentrée de l’ensemble 
+piston-tige 4 lorsque la bride n’est plus 
+alimentée en énergie hydraulique et libère 
+ainsi la pièce usinée.
+ 
+ \begin{obj}
+ Déterminer la valeur minimale 
+$p$ de la pression d’alimentation pour respecter l'exigence d'un effort presseur minimal de 4000 N.  
+
+ \end{obj}
+ 
+ \subsection*{Hypothèses}
+ 
+\begin{itemize}
+\item Les liaisons sont considérées comme parfaites. 
+\item L’action de la pesanteur sur les pièces est négligée par rapport aux autres actions mécaniques. 
+\item Le système est en équilibre en phase de bridage dans une position pour laquelle : 
+\begin{itemize}
+\item le contact entre la vis 8 et la pièce à usiner est ponctuel en J de normale $\vect{y}$; 
+\item le contact entre le piston 4 et le levier 7 est ponctuel en I de normale $\vect{y}$; 
+\item Il n’y a pas de mouvement relatif entre 10 et 11. 
+\end{itemize}
+\end{itemize}
+
+ \subsection*{Données}
+\begin{itemize}
+\item Ressort : 
+\begin{itemize}
+\item longueur à vide $L_0 = 20\; mm$ ; 
+\item longueur dans la position étudiée $L = 16\; mm$; 
+\item raideur : $k=10\, N/mm$.
+\end{itemize}
+\item $\vect{KJ}\cdot\vect{x}=a=-32$;
+\item $\vect{KI}\cdot\vect{x}=b= 33$ (distance en mm);
+\item piston : rayon $R=30\; mm$.\
+\end{itemize}
+   \subsection*{Travail demandé}
+  \subparagraph{}
+ \textit{}
+ 
+   \subparagraph{}
+ \textit{Réaliser le graphe de structure, puis compléter-le en vue d’une étude de statique. }
+   \subparagraph{}
+ \textit{Déterminer, en appliquant le Principe Fondamental de la Statique à \{7, 8, 9\} au point $K$, les 
+six équations scalaires liant les composantes d’actions mécaniques et les dimensions du 
+système. En déduire l’expression de $Y_{4\rightarrow 7}$ en fonction de l'effort presseur $F$ et des dimensions du système.}
+ 
+   \subparagraph{}
+ \textit{Déterminer, en appliquant le Principe Fondamental de la Statique à \{4\} au point I, les six 
+équations scalaires liant les composantes d’actions mécaniques et les dimensions du 
+système. En déduire l’expression de p en fonction de l’effort presseur F , de la raideur 
+k et 
+des dimensions du système. 
+}
+   \subparagraph{}
+ \textit{En déduire la valeur minimale de la pression 
+p permettant le respect de l'objectif.}
+
+
+\begin{center}
+\includegraphics[width=.9\textwidth]{images/Fi01}
+\end{center}
+\end{document}
+
+
+

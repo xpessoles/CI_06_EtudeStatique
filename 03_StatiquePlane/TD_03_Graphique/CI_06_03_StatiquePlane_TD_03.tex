@@ -1,0 +1,327 @@
+\documentclass[10pt]{article}
+\input{style/coursHeadings}
+\input{style/programHeadings}
+\input{style/macros_SII}
+\input{style/macros_Titres}
+\input{style/macros_Frames}
+
+%Si le boolen xp est vrai : compilation pour xabi
+%Sinon compilation Damien
+\newboolean{xp}
+\setboolean{xp}{true}
+
+\newboolean{prof}
+\setboolean{prof}{true}
+
+\usepackage[%
+    pdftitle={CI 06 : Stat - Problèmes plans},
+    pdfauthor={Xavier Pessoles},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta]{hyperref}
+
+
+\def\discipline{Sciences Industrielles de l'Ingénieur}
+\def\xxtitre{\ifthenelse{\boolean{xp}}{
+CI 6 : Étude du comportement statique des systèmes}{}}
+
+\def\xxsoustitre{\ifthenelse{\boolean{xp}}{
+Chapitre 2 --  -- TD}{
+Partie  -- }}
+
+\def\xxauteur{\ifthenelse{\boolean{xp}}{
+Xavier \textsc{Pessoles}
+}{}}
+
+\def\xxpied{\ifthenelse{\boolean{xp}}{
+CI 6 : Statique\\
+Ch. 3 : Statique plane -- TD 3 -- Arc Boutement}{
+\xxtitre}}
+
+\def\xxcathegorie{\ifthenelse{\boolean{xp}}{
+2013 -- 2014 \\
+Xavier \textsc{Pessoles}}{}}
+
+%---------------------------------------------------------------------------
+
+\begin{document}
+
+\ifthenelse{\boolean{xp}}{\input{style/enteteXP}}{\input{style/enteteDI}}
+
+\begin{center}
+\Large{\textsc{Travaux Dirigés -- Résolution graphique des problèmes de statique}}
+\end{center}
+
+
+
+\section*{Serrage à leviers}
+\subsection*{Présentation}
+
+Un montage d’usinage est un dispositif qui assure 2 fonctions principales : 
+\begin{itemize}
+\item mise en position de la pièce qui va être usinée. 
+\item maintien en position de celle-ci lors de l’usinage. 
+\end{itemize}
+ 
+Pour notre système : 
+\begin{itemize}
+\item la mise en position est réalisée à l’aide de plusieurs contacts ponctuels entre le bâti 5 et la pièce 6. 
+\item le maintien en position est réalisé par l’intermédiaire d’un système de serrage constitué de 3 leviers 1, 
+2 et 3, et d’un vérin 4-7. 
+\end{itemize}
+ 
+ 
+\subsection*{Hypothèses}
+\begin{itemize}
+\item Le bâti 5 est seulement en liaison avec la pièce 6, le levier 1 en B et le levier 3 en F. 
+\item Toutes les liaisons sont supposées parfaites et le poids des pièces est négligé devant les autres 
+actions. 
+\item L’action de serrage souhaitée du levier 1 sur la pièce 6 est de 1000 N. 
+\end{itemize}
+
+\subsection*{Travail demandé}
+
+\subparagraph{}
+\textit{Peut-on faire une résolution graphique ?}
+
+\subparagraph{}
+\textit{Déterminer le graphe de structure (approprié à une résolution graphique). }
+
+\subparagraph{}
+\textit{Donner le cheminement pour déterminer graphiquement l’action que doit exercer la tige du 
+vérin 7 sur le levier 3 pour assurer le serrage souhaité. }
+
+\subparagraph{}
+\textit{Appliquer cette démarche et déterminer graphiquement, dans la position donnée, cette action.}
+
+\subparagraph{}
+\textit{Sachant que le diamètre extérieur du piston vaut 35 mm et que le diamètre de la tige du 
+piston vaut 10 mm, en déduire la pression nécessaire dans la chambre du piston. }
+
+
+
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/fig_01}
+\end{center}
+
+
+\newpage
+\section*{Pince à mors parallèles}
+\setcounter{subparagraph}{0}
+\subsection*{Présentation}
+
+A l’aide d’une structure de forme parallélogramme (ECDF), les deux mors (doigts 5) de la pince ci-dessous 
+restent toujours parallèles pendant le serrage de la pièce. 
+L’effort développé par le vérin est transmis aux doigts 5 par la biellette 2 et la bielle 6. 
+
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/fig_02}
+\end{center}
+
+\subsection*{Hypothèses}
+
+\begin{itemize}
+\item Le mécanisme est supposé plan. 
+\item L’action mécanique en I de la pièce sur le doigt 5 est modélisable par un glisseur vertical de norme 
+100 N, l’action sur l’autre doigt est identique. 
+\item La pince est symétrique. 
+\end{itemize}
+
+
+\subsection*{Travail demandé}
+
+\subparagraph{}
+\textit{Peut-on faire une résolution graphique ? }
+
+\subparagraph{}
+\textit{Déterminer le graphe de structure (approprié à une résolution graphique).}
+
+\subparagraph{}
+\textit{Donner le cheminement pour déterminer graphiquement l’action du fluide sur la tige. }
+
+\subparagraph{}
+\textit{Appliquer cette démarche et déterminer graphiquement, dans la position donnée, cette action. 
+(Justifier les différentes étapes de la construction).}
+
+\subparagraph{}
+\textit{La barre 4 est-elle soumise à de la traction ou de la compression ?}
+
+
+\newpage
+\section*{Système de pesée embarquée}
+\setcounter{subparagraph}{0}
+\subsection*{Présentation}
+On s’intéresse à un système de collecte et de pesée embarquée 
+des ordures ménagères. 
+
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/fig_03}
+\end{center}
+
+Afin de réduire la quantité des ordures, de plus en plus de municipalités décident de faire payer aux usagers 
+une taxe sur les ordures ménagères proportionnelle au poids des déchets. Les camions poubelles sont alors 
+équipés de systèmes de pesage de manière à enregistrer le poids des déchets lors du vidage des 
+conteneurs. 
+
+Chaque conteneur à ordures comporte en outre un dispositif d’identification unique permettant d’établir 
+automatiquement les factures. L’identité du conteneur est donnée à l’aide d’un code à barre. 
+ 
+Un calculateur soustrait après mesures le poids du conteneur vidé au poids du conteneur plein et stocke le 
+poids net avec l’identification du conteneur. Les informations récupérées sont alors transmises au système 
+informatique pour facturation et analyse. 
+ 
+ 
+Le système mécanique est donné sur le document page suivante. 
+ 
+ 
+Le fonctionnement est le suivant : 
+ 
+\subsubsection*{Levage du conteneur}
+Le conteneur 8 est soulevé par le peigne 7 qui est lui-même articulé en H sur la bielle 5 et en J sur la bielle 
+6. L’effort de levage est fourni par le vérin [3+4]. Celui-ci est articulé en B sur le bras 2 et en F sur la bielle 6. 
+C’est lors de cette phase que la mesure de poids est effectuée. Avant utilisation, le système est étalonné en 
+utilisant des poids connus. La mesure faite dans le bras de soulèvement 5 est enregistrée sous un angle 
+prédéterminé, par exemple dans la position de la figure page suivante, à la fois lors de la course en montée 
+et en descente. Pendant cette phase le vérin [0+1] ne fonctionne pas. 
+ 
+ 
+ 
+\subsubsection*{Vidage du conteneur}
+Le système est animé par le vérin hydraulique [0+1] grâce au système de transformation de mouvement 
+pignon-crémaillère. La pièce 2 est en liaison pivot d’axe 
+$(A,\vect{z})$ avec la benne 0, ce qui permet le 
+basculement du conteneur 8. Lors de cette phase le conteneur est vidé. 
+ 
+ 
+\subsubsection*{Repose du conteneur}
+On fait tourner le conteneur en sens inverse jusqu’à ce qu’il soit dans sa position droite et on l’abaisse 
+jusqu’au sol. 
+
+
+\subsection*{Levage du conteneur}
+On rappelle que lors de la phase de soulèvement, seul le vérin [3+4] est actionné. 
+
+\begin{obj}
+Dans cette partie, on se propose de déterminer la poussée du vérin [3+4], $\vectf{4}{6}$ , lors de la phase de levée. 
+\end{obj}
+
+\begin{hypo}
+\begin{itemize}
+\item Les liaisons sont considérées comme parfaites. 
+\item L’action de la pesanteur sur les différents solides sera négligée sauf sur le conteneur 8 de masse 
+100 kg et de centre de gravité G . 
+\item Le problème est considéré comme plan $\left(O,\vect{x_0},\vect{y_0} \right)$.
+\end{itemize}
+\end{hypo}
+
+\textbf{Données :}
+\begin{itemize}
+\item Le système est en équilibre par rapport à un référentiel galiléen dans la position de la figure dans le 
+plan de symétrie $\left(O,\vect{x_0},\vect{y_0} \right)$. 
+\item Les pièces 4 et 5 ne se touchent pas. 
+\end{itemize}
+
+\textbf{Directive}
+Échelle des actions conseillées : 5cm pour 1000 daN.
+
+\subparagraph{}
+\textit{Déterminer graphiquement, dans la position donnée, la poussée $\vectf{4}{6}$ du vérin [3+4]. 
+(Justifier les différentes étapes de la construction). 
+}
+
+\subsection*{Vidage du conteneur}
+
+Lors de cette phase, seul le vérin [0+1] est actionné. L’énergie nécessaire au fonctionnement du système est 
+d’origine hydraulique. Elle est fournie par une pompe de débit $300\; cm^3 \cdot .s^{-1}$ entraînée en rotation par le moteur 
+du camion. 
+
+\begin{obj}
+Dans cette partie, on se propose de vérifier les conditions de vidage du conteneur.
+\end{obj}
+
+\textbf{Données}
+\begin{itemize}
+\item Le corps du vérin 0 est immobile par rapport au camion-benne. 
+\item Le mouvement de la tige du vérin 1 par rapport au camion-benne 0 est une translation de direction 
+horizontale. 
+\item La tige du vérin [0+1] a une course de 50 mm, le rayon du piston est de 65 mm. 
+\item Le rayon primitif du pignon 2 est de 20 mm. 
+\end{itemize}
+
+\subparagraph{}
+\textit{Compte tenu de la course de la tige du vérin 1, déterminer l’angle de basculement du conteneur. }
+
+\begin{center}
+\includegraphics[width=.3\textwidth]{images/fig_04}
+\end{center}
+
+\subparagraph{}
+\textit{Dans cette position, en déduire l’angle de frottement maximal en deçà duquel les déchets 
+pourraient rester à l’intérieur du conteneur. Conclure quant au vidage du conteneur. }
+
+\subparagraph{}
+\textit{Déterminer la vitesse de déplacement du vérin ainsi que le temps nécessaire au basculement.}
+
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/fig_05}
+\end{center}
+
+
+\newpage
+\section*{Skip de chargement}
+\setcounter{subparagraph}{0}
+\subsection*{Présentation}
+
+Le skip de chargement étudié est utilisé dans les carrières pour l’extraction 
+des matières premières. 
+ 
+Il se compose d’un chariot (skip) 3 guidé par deux rails (profilés en U) 
+solidaires d’un châssis fixe 1. 
+Le guidage du chariot sur les rails est réalisé par deux paires de galets 4 et 5 
+en liaison pivot avec le chariot, et en contact en A et B avec les rails. 
+ 
+Le levage est réalisé à l’aide d’une chaîne entraînée par un motoréducteur 
+(non représenté). La capacité de levage est de 5000 N. 
+ 
+On se propose de rechercher les actions en A et B ainsi que la tension dans la 
+chaîne en vue de son dimensionnement. 
+
+\begin{center}
+\includegraphics[width=.3\textwidth]{images/fig_06}
+\end{center}
+
+\begin{hypo}
+\begin{itemize}
+\item Les liaisons sont considérées comme parfaites. 
+\item L’action de la pesanteur sur les différents solides sera négligée sauf sur le chariot 3 de masse 
+M = 500 kg et de centre de gravité $G$. On prendra $g=10 m\cdot s^{-2}$.
+\item Le problème est considéré comme plan $\left( O,\vect{x},\vect{y}\right)$.
+\item Le système est en équilibre dans la position de la figure de la page suivante. 
+\item Le frottement ainsi que la résistance au roulement en A et B sont négligés. 
+\item On suppose avoir isolé la chaîne de façon à connaître la droite d’action en C. 
+\item On suppose avoir isolé les galets de façon à connaître la droite d’action en A et B. 
+\end{itemize}
+\end{hypo}
+
+\subparagraph{}
+\textit{Déterminer les actions mécaniques en A, B et C appliquées sur le skip. }
+
+\begin{center}
+\includegraphics[width=.6\textwidth]{images/fig_07}
+\end{center}
+
+\end{document}
+
+
+\newpage
+\section*{}
+\setcounter{subparagraph}{0}
+\subsection*{}
+
+
+
+\begin{itemize}
+\end{itemize}
+\end{document}
+
+
